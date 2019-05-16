@@ -23,10 +23,6 @@ public class Commande implements Serializable {
 	@Column(length=1)
 	private String status;
 
-	//bi-directional many-to-one association to AbonnementsCommande
-	@OneToMany(mappedBy="commande")
-	private List<AbonnementsCommande> abonnementsCommandes;
-
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
 	@JoinColumn(name="ID_UTILISATEUR", nullable=false)
@@ -58,28 +54,6 @@ public class Commande implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public List<AbonnementsCommande> getAbonnementsCommandes() {
-		return this.abonnementsCommandes;
-	}
-
-	public void setAbonnementsCommandes(List<AbonnementsCommande> abonnementsCommandes) {
-		this.abonnementsCommandes = abonnementsCommandes;
-	}
-
-	public AbonnementsCommande addAbonnementsCommande(AbonnementsCommande abonnementsCommande) {
-		getAbonnementsCommandes().add(abonnementsCommande);
-		abonnementsCommande.setCommande(this);
-
-		return abonnementsCommande;
-	}
-
-	public AbonnementsCommande removeAbonnementsCommande(AbonnementsCommande abonnementsCommande) {
-		getAbonnementsCommandes().remove(abonnementsCommande);
-		abonnementsCommande.setCommande(null);
-
-		return abonnementsCommande;
 	}
 
 	public Utilisateur getUtilisateur() {

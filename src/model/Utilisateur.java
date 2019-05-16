@@ -21,8 +21,6 @@ public class Utilisateur implements Serializable {
 	@Column(name="ID_UTILISATEUR", unique=true, nullable=false)
 	private int idUtilisateur;
 
-	@Column(length=45)
-	private String ADnumero;
 
 	@Column(length=255)
 	private String ADrue;
@@ -45,13 +43,6 @@ public class Utilisateur implements Serializable {
 
 	@Column(length=255)
 	private String prenom;
-
-	@Column(length=255)
-	private String pseudo;
-
-	//bi-directional many-to-one association to CartesBancaire
-	@OneToMany(mappedBy="utilisateur")
-	private List<CartesBancaire> cartesBancaires;
 
 	//bi-directional many-to-one association to Commande
 	@OneToMany(mappedBy="utilisateur")
@@ -95,13 +86,6 @@ public class Utilisateur implements Serializable {
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public String getADnumero() {
-		return this.ADnumero;
-	}
-
-	public void setADnumero(String ADnumero) {
-		this.ADnumero = ADnumero;
-	}
 
 	public String getADrue() {
 		return this.ADrue;
@@ -157,36 +141,6 @@ public class Utilisateur implements Serializable {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	public String getPseudo() {
-		return this.pseudo;
-	}
-
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
-
-	public List<CartesBancaire> getCartesBancaires() {
-		return this.cartesBancaires;
-	}
-
-	public void setCartesBancaires(List<CartesBancaire> cartesBancaires) {
-		this.cartesBancaires = cartesBancaires;
-	}
-
-	public CartesBancaire addCartesBancaire(CartesBancaire cartesBancaire) {
-		getCartesBancaires().add(cartesBancaire);
-		cartesBancaire.setUtilisateur(this);
-
-		return cartesBancaire;
-	}
-
-	public CartesBancaire removeCartesBancaire(CartesBancaire cartesBancaire) {
-		getCartesBancaires().remove(cartesBancaire);
-		cartesBancaire.setUtilisateur(null);
-
-		return cartesBancaire;
 	}
 
 	public List<Commande> getCommandes() {

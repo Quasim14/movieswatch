@@ -6,10 +6,6 @@
 		<jta-data-source>java:comp/env/jdbc/TestDB</jta-data-source>
 		
 		<class>model.Personnage</class>
-		<class>model.Abonnement</class>
-		<class>model.AbonnementsCommande</class>
-		<class>model.CartesBancaire</class>
-		<class>model.CartesBancairePK</class>
 		<class>model.Codepostaux</class>
 		<class>model.Commande</class>
 		<class>model.CommandesFilm</class>
