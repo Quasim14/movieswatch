@@ -11,8 +11,8 @@ import java.util.List;
  */
 @Entity
 @Table(name="codepostaux")
-//@NamedQuery(name="Codepostaux.findAll", query="SELECT c FROM Codepostaux c")
-@NamedQuery(name="Codepostaux.findByNumber", query="SELECT c FROM Codepostaux  c where c.numero=:numero")
+@NamedQueries({@NamedQuery(name="Codepostaux.findAll", query="SELECT c FROM Codepostaux c"),
+@NamedQuery(name="Codepostaux.findByNumber", query="SELECT c FROM Codepostaux  c where c.numero=:numero")})
 public class Codepostaux implements Serializable {
 	private static final long serialVersionUID = 1L;
 

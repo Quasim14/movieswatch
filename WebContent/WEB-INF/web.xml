@@ -15,6 +15,11 @@
     <filter-name>RestrictionFilter</filter-name>
     <filter-class>com.movieswatch.filters.RestrictionFilter</filter-class>
   </filter>
+  <filter-mapping>
+  	<filter-name>RestrictionFilter</filter-name>
+  	<url-pattern>/accesrestreint/*</url-pattern>
+  </filter-mapping>
+  
   
   
   <filter>

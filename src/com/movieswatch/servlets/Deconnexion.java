@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Accueil
+ * Servlet implementation class Deconnexion
  */
-@WebServlet("/accesrestreint/accueil")
-public class Accueil extends HttpServlet {
+@WebServlet("/accesrestreint/deconnexion")
+public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Accueil() {
+    public Deconnexion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +27,19 @@ public class Accueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward( request, response );
+		HttpSession session= request.getSession();
+		session.setAttribute("currentUser", null);
+		session.invalidate();
+		
+		response.sendRedirect(request.getContextPath() +"/connexion");
 	}
 
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 
 }

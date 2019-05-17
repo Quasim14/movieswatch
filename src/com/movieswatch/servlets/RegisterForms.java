@@ -50,7 +50,7 @@ public class RegisterForms extends HttpServlet {
 		request.setAttribute("utilisateur",utilisateur);
 		
 		if(forms.getErreurs().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + "/Connexion");
+			response.sendRedirect(request.getContextPath() + "/connexion");
 
 		}else {
 			request.setAttribute("form", forms);

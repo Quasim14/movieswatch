@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="<c:url value="/inc/bootstrap.css"/>" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/inc/css/bootstrap.css"/>" />
 <meta charset="ISO-8859-1">
 <title>Moviewatch</title>
 </head>

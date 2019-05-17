@@ -1,4 +1,3 @@
-
 <form method="post" action="RegisterForms">
 	<fieldset>
     	<legend>Inscription</legend>

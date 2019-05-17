@@ -20,11 +20,7 @@ import com.movieswatch.model.Utilisateur;
 public class Connexion extends HttpServlet {
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-    	
-    	HttpSession session = request.getSession();
-    	if(session.getAttribute("currentUser")!=null) {
-    		response.sendRedirect(request.getContextPath() + "/accueil");
-    	}else
+      
     		this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward( request, response );
     }
 
@@ -37,7 +33,7 @@ public class Connexion extends HttpServlet {
     	request.setAttribute( "utilisateur", utilisateur );
     	if ( form.getErreurs().isEmpty() ) {
     		session.setAttribute( "currentUser", utilisateur );
-    		response.sendRedirect(request.getContextPath() + "/accueil");
+    		response.sendRedirect(request.getContextPath() + "/accesrestreint/accueil");
     	} else {
     		session.setAttribute( "currentUser", null );
     		request.setAttribute( "form", form );
