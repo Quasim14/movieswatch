@@ -1,4 +1,4 @@
-package movieswatchquery;
+package com.movieswatch.query;
 
 import java.io.Serializable;
 import java.util.*;

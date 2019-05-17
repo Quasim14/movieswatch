@@ -1,4 +1,4 @@
-package model;
+package com.movieswatch.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -12,7 +12,8 @@ import java.util.List;
  */
 @Entity
 @Table(name="utilisateurs")
-@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
+//@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
+@NamedQuery(name="Utilisateur.connexion", query="SELECT u FROM Utilisateur u where u.email = :email and u.passwd = :password ")
 public class Utilisateur implements Serializable {
 	private static final long serialVersionUID = 1L;
 

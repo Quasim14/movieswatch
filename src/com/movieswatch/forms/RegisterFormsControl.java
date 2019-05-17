@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
-import model.Codepostaux;
-import model.Role;
-import model.Utilisateur;
-import movieswatchquery.EntityFinderImpl;
+import com.movieswatch.model.Codepostaux;
+import com.movieswatch.model.Role;
+import com.movieswatch.model.Utilisateur;
+import com.movieswatch.query.EntityFinderImpl;
 
 public class RegisterFormsControl {
 	EntityFinderImpl<Codepostaux> entityFinderImplCodePostal = new EntityFinderImpl<>();
@@ -60,7 +60,7 @@ public class RegisterFormsControl {
 	    
 	    utilisateur.setPrenom(prenom);
 	    utilisateur.setADrue(adresseRue);
-	    if(codePostals != null) {
+	    if(codePostals.size() ==1) {
 		    for(Codepostaux value : codePostals){
 		    	utilisateur.setCodepostaux(value);
 		    }

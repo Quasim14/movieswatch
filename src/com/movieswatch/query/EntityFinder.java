@@ -1,4 +1,4 @@
-package movieswatchquery;
+package com.movieswatch.query;
 
 import java.util.List;
 import java.util.Map;

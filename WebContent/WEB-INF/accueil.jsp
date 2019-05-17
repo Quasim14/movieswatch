@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<c:out value="${utilisteur.nom }"></c:out>
+<c:out value="Bienvenue ${sessionScope.currentUser.prenom }"></c:out>
 
 </body>
 </html>

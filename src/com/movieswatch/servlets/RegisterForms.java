@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.movieswatch.forms.RegisterFormsControl;
-
-import model.Utilisateur;
+import com.movieswatch.model.Utilisateur;
 
 /**
  * Servlet implementation class RegisterForms
  */
-@WebServlet("/RegisterForms")
+@WebServlet("/registerForms")
 public class RegisterForms extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,7 +50,7 @@ public class RegisterForms extends HttpServlet {
 		request.setAttribute("utilisateur",utilisateur);
 		
 		if(forms.getErreurs().isEmpty()) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/Connexion");
 
 		}else {
 			request.setAttribute("form", forms);
