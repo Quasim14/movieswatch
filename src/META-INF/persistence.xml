@@ -5,33 +5,29 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>java:comp/env/jdbc/TestDB</jta-data-source>
 		
-		<class>model.Personnage</class>
-		<class>model.Abonnement</class>
-		<class>model.AbonnementsCommande</class>
-		<class>model.CartesBancaire</class>
-		<class>model.CartesBancairePK</class>
-		<class>model.Codepostaux</class>
-		<class>model.Commande</class>
-		<class>model.CommandesFilm</class>
-		<class>model.Csa</class>
-		<class>model.Document</class>
-		<class>model.Facture</class>
-		<class>model.Film</class>
-		<class>model.FilmsGenre</class>
-		<class>model.FilmsPay</class>
-		<class>model.FilmsPersonnage</class>
-		<class>model.FilmsPersonne</class>
-		<class>model.FilmsUtilisateur</class>
-		<class>model.Format</class>
-		<class>model.FormatsFilm</class>
-		<class>model.Genre</class>
-		<class>model.Pay</class>
-		<class>model.Permission</class>
-		<class>model.PermissionsRole</class>
-		<class>model.Personne</class>
-		<class>model.PersonnesPersonnage</class>
-		<class>model.Role</class>
-		<class>model.Utilisateur</class>
+		<class>com.movieswatch.model.Personnage</class>
+		<class>com.movieswatch.model.Codepostaux</class>
+		<class>com.movieswatch.model.Commande</class>
+		<class>com.movieswatch.model.CommandesFilm</class>
+		<class>com.movieswatch.model.Csa</class>
+		<class>com.movieswatch.model.Document</class>
+		<class>com.movieswatch.model.Facture</class>
+		<class>com.movieswatch.model.Film</class>
+		<class>com.movieswatch.model.FilmsGenre</class>
+		<class>com.movieswatch.model.FilmsPay</class>
+		<class>com.movieswatch.model.FilmsPersonnage</class>
+		<class>com.movieswatch.model.FilmsPersonne</class>
+		<class>com.movieswatch.model.FilmsUtilisateur</class>
+		<class>com.movieswatch.model.Format</class>
+		<class>com.movieswatch.model.FormatsFilm</class>
+		<class>com.movieswatch.model.Genre</class>
+		<class>com.movieswatch.model.Pay</class>
+		<class>com.movieswatch.model.Permission</class>
+		<class>com.movieswatch.model.PermissionsRole</class>
+		<class>com.movieswatch.model.Personne</class>
+		<class>com.movieswatch.model.PersonnesPersonnage</class>
+		<class>com.movieswatch.model.Role</class>
+		<class>com.movieswatch.model.Utilisateur</class>
 
 	</persistence-unit>
 </persistence>

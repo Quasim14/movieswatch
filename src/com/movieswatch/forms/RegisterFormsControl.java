@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
-import model.Codepostaux;
-import model.Role;
-import model.Utilisateur;
-import movieswatchquery.EntityFinderImpl;
+import com.movieswatch.model.Codepostaux;
+import com.movieswatch.model.Role;
+import com.movieswatch.model.Utilisateur;
+import com.movieswatch.query.EntityFinderImpl;
 
 public class RegisterFormsControl {
 	EntityFinderImpl<Codepostaux> entityFinderImplCodePostal = new EntityFinderImpl<>();
@@ -38,7 +38,6 @@ public class RegisterFormsControl {
 		String prenom =request.getParameter("prenom");
 		String adresseRue =request.getParameter("adresseRue");
 		String codepostal =request.getParameter("codepostal");
-		//String ville =request.getParameter("ville");
 		String telephone =request.getParameter("telephone");
 		String datenaissance =request.getParameter("datenaissance");
 	    String email = request.getParameter("email");
@@ -57,14 +56,11 @@ public class RegisterFormsControl {
 	    
 	    LocalDate datenaiss = LocalDate.parse(datenaissance);    
 	    utilisateur.setDateNaissance(Date.valueOf(datenaiss));
-	    utilisateur.setADnumero(null);
-	    utilisateur.setPseudo(null);
 	    utilisateur.setUtilisateur(null);
-	    
 	    
 	    utilisateur.setPrenom(prenom);
 	    utilisateur.setADrue(adresseRue);
-	    if(codePostals != null) {
+	    if(codePostals.size() ==1) {
 		    for(Codepostaux value : codePostals){
 		    	utilisateur.setCodepostaux(value);
 		    }
@@ -96,10 +92,10 @@ public class RegisterFormsControl {
 	    utilisateur.setNom( nom );
 
 	    if ( erreurs.isEmpty() ) {
-	        resultat = "Succès de l'inscription.";
+	        resultat = "Succï¿½s de l'inscription.";
 	        entityFinderImplUtilisateur.insert(utilisateur);
 	    } else {
-	        resultat = "Échec de l'inscription.";
+	        resultat = "ï¿½chec de l'inscription.";
 	    }
 
 	    return utilisateur;
@@ -119,9 +115,9 @@ public class RegisterFormsControl {
 	private void validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
 	    if ( motDePasse != null && confirmation != null ) {
 	        if ( !motDePasse.equals( confirmation ) ) {
-	            throw new Exception( "Les mots de passe entrés sont différents, merci de les saisir à nouveau." );
+	            throw new Exception( "Les mots de passe entrï¿½s sont diffï¿½rents, merci de les saisir ï¿½ nouveau." );
 	        } else if ( motDePasse.length() < 3 ) {
-	            throw new Exception( "Les mots de passe doivent contenir au moins 3 caractères." );
+	            throw new Exception( "Les mots de passe doivent contenir au moins 3 caractï¿½res." );
 	        }
 	    } else {
 	        throw new Exception( "Merci de saisir et confirmer votre mot de passe." );
@@ -130,7 +126,7 @@ public class RegisterFormsControl {
 
 	private void validationNom( String nom ) throws Exception {
 	    if ( nom != null && nom.length() < 3 ) {
-	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractères." );
+	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractï¿½res." );
 	    }
 	}
 

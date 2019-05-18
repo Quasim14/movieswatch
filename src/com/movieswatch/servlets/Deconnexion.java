@@ -6,21 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.movieswatch.forms.RegisterFormsControl;
-import com.movieswatch.model.Utilisateur;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class RegisterForms
+ * Servlet implementation class Deconnexion
  */
-@WebServlet("/registerForms")
-public class RegisterForms extends HttpServlet {
+@WebServlet("/accesrestreint/deconnexion")
+public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterForms() {
+    public Deconnexion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,34 +27,19 @@ public class RegisterForms extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session= request.getSession();
+		session.setAttribute("currentUser", null);
+		session.invalidate();
 		
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/registerForms.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() +"/connexion");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		RegisterFormsControl forms = new RegisterFormsControl();
-		
-		Utilisateur utilisateur = new Utilisateur();
-		
-		
-		utilisateur= forms.inscrireUtilisateur(request);
-		
-		request.setAttribute("utilisateur",utilisateur);
-		
-		if(forms.getErreurs().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + "/connexion");
-
-		}else {
-			request.setAttribute("form", forms);
-			doGet(request,response);
-		}
-	
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
