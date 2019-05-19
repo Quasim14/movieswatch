@@ -43,11 +43,20 @@ public class RegisterFormsControl {
 	    String email = request.getParameter("email");
 	    String motdepasse = request.getParameter("motdepasse");
 	    String confirmation = request.getParameter("confirmation");
+	    String pRole = request.getParameter("role");
 	   
 	    Map<String, String> parametre = new HashMap<String, String>(); 
 	    parametre.put("numero",codepostal);
-	
-	    role= entityFinderImplRole.findOne(role, 1);
+	    
+	    switch(pRole) {
+	    case "Utilisateur" : role =  entityFinderImplRole.findOne(role, 1);
+			break;
+	    case "Admin" : role =  entityFinderImplRole.findOne(role, 2);
+	    	break;		
+	    case "Comptable" : role =  entityFinderImplRole.findOne(role, 3);
+			break;
+	    }
+	    
 	    List<Codepostaux> codePostals =entityFinderImplCodePostal.findByNamedQuery("Codepostaux.findByNumber", codePostal, parametre) ;
 	    Utilisateur utilisateur = new Utilisateur();
 	    utilisateur.setRole(role);
@@ -60,7 +69,10 @@ public class RegisterFormsControl {
 	    
 	    utilisateur.setPrenom(prenom);
 	    utilisateur.setADrue(adresseRue);
+	    
+	    
 	    if(codePostals.size() ==1) {
+	    	
 		    for(Codepostaux value : codePostals){
 		    	utilisateur.setCodepostaux(value);
 		    }
