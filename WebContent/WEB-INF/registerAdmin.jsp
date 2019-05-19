@@ -47,6 +47,12 @@
         <input type="password" id="confirmation" name="confirmation" value="" size="20" maxlength="20" />
         <span class="erreur">${form.erreurs['confirmation']}</span>
         <br />
+        
+        <select name ="role">
+        	<option value="Admin">Administrateur</option>
+        	<option value="Utilisateur">Utilisateur</option>
+        	<option value="Comptable">Comptable</option>
+        </select>
                 
 
         <input type="submit" value="Inscription" class="sansLabel" />

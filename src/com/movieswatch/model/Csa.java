@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="csa")
-@NamedQuery(name="Csa.findAll", query="SELECT c FROM Csa c")
+@NamedQueries({
+	@NamedQuery(name="Csa.findIdByValue", query="SELECT c FROM Csa c where c.ageMin =:age"),
+	@NamedQuery(name="Csa.findAll", query="SELECT c FROM Csa c")
+})
+
 public class Csa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +24,7 @@ public class Csa implements Serializable {
 	@Column(name="ID_CSA", unique=true, nullable=false)
 	private int idCsa;
 
-	@Column(name="age_min", length=1)
+	@Column(name="age_min", length=2)
 	private String ageMin;
 
 	//bi-directional many-to-one association to Film
