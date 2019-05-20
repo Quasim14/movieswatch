@@ -31,19 +31,20 @@ public class DeleteMovie extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idFilm= Integer.valueOf(request.getParameter("idfilm"));
 		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
-		List<CommandesFilm> filmsPanier= new ArrayList();
-		
-		Map<String, Integer> param= new HashMap<String, Integer>();
-		param.put("idfilm", idFilm);
-		param.put("idpanier",idPanier);
-		
+		EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
 		EntityFinderImpl<CommandesFilm> eficf = new EntityFinderImpl<CommandesFilm>();
-		filmsPanier= eficf.findByNamedQuery("CommandesFilm.getFilm", new CommandesFilm(), param);
+		CommandesFilm itemToRemove= new CommandesFilm();
 		
-		for(CommandesFilm cf : filmsPanier) {
-			eficf.delete(cf, cf.getIdCommandeFilm());
+		Commande panier= efic.findOne(new Commande(), idPanier);
+		
+		for(CommandesFilm cf : panier.getCommandesFilms()) {
+			if(cf.getFilm().getIdFilm()== idFilm) {
+				itemToRemove= cf;
+				eficf.delete(cf, cf.getIdCommandeFilm());
+			}
 		}
 		
+		panier.removeCommandesFilm(itemToRemove);
 		response.sendRedirect(request.getContextPath()+ "/accesrestreint/panier");
 	}
 

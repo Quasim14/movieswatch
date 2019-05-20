@@ -45,17 +45,10 @@ public class Panier extends HttpServlet {
 		param.put("id", currentUser.getIdUtilisateur());
 		param.put("status","non-paye");
 		
-		List<Commande> commandes= etic.findByNamedQuery("Commande.getPanier", new Commande(), param);
+		Commande commande= etic.findOneByNamedQuery("Commande.getPanier", new Commande(), param);
 		
-		for(Commande com: commandes) {
-			for(CommandesFilm cf: com.getCommandesFilms()) 
-			{
-				films.add(cf.getFilm());
-			}
-		}
-		
-		request.setAttribute("films", films);
-		request.setAttribute("idpanier", commandes.get(0).getIdCommande());
+		request.setAttribute("commandeFilms", commande.getCommandesFilms());
+		request.setAttribute("idpanier", commande.getIdCommande());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/panier.jsp").forward( request, response );
 	}
 

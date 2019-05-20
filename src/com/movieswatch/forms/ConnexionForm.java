@@ -30,11 +30,10 @@ public final class ConnexionForm {
         Map<String, String> param = new HashMap<String, String>();
         param.put("email", email);
         param.put("password",motDePasse);
-        List<Utilisateur> users= entityFinderImplUtilisateur.findByNamedQuery("Utilisateur.connexion", utilisateur, param);
-        if(users.size() ==1) {
-        	for(Utilisateur user: users) {
-        		utilisateur = user;
-        	}
+        Utilisateur user= entityFinderImplUtilisateur.findOneByNamedQuery("Utilisateur.connexion", utilisateur, param);
+        if(user !=null) {
+        	utilisateur = user;
+        	
         }else {
         	erreurs.put("user", "Votre login ou votre mot de passe est mauvais");
         }

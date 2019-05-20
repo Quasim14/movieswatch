@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
@@ -77,6 +78,35 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 	        em.close();
 	    }
 		return listT;
+	}
+	
+public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
+		
+		Class<? extends Object> ec = t.getClass();
+		
+		EntityManager em = EMF.getEM();
+		try {
+		    Query query = em.createNamedQuery(namedQuery, ec);
+		    
+	    	if(param != null) {
+	    		
+	    		setParameters(query, param);		
+	    	}
+	    	
+	    	try {
+	    		t = (T) query.getSingleResult();
+	    	}catch(NoResultException e){
+	    		return null;
+	    	}
+	    	
+	    	log.debug("Named query " + namedQuery + " find from database: Ok");	    
+		}
+		finally {
+			
+			em.clear();
+	        em.close();
+	    }
+		return t;
 	}
 	
 	@Override
