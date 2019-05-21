@@ -30,7 +30,7 @@ public class Commande implements Serializable {
 	private Utilisateur utilisateur;
 
 	//bi-directional many-to-one association to Facture
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="ID_FACTURE", nullable=false)
 	private Facture facture;
 

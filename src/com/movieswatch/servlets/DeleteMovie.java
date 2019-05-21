@@ -22,7 +22,9 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/deletemovie")
 public class DeleteMovie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
+	EntityFinderImpl<CommandesFilm> eficf = new EntityFinderImpl<CommandesFilm>();
+	
     public DeleteMovie() {
         super();
         // TODO Auto-generated constructor stub
@@ -31,8 +33,6 @@ public class DeleteMovie extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idFilm= Integer.valueOf(request.getParameter("idfilm"));
 		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
-		EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
-		EntityFinderImpl<CommandesFilm> eficf = new EntityFinderImpl<CommandesFilm>();
 		CommandesFilm itemToRemove= new CommandesFilm();
 		
 		Commande panier= efic.findOne(new Commande(), idPanier);

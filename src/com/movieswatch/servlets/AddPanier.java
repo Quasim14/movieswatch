@@ -1,9 +1,7 @@
 package com.movieswatch.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -20,29 +18,40 @@ import com.movieswatch.model.Utilisateur;
 import com.movieswatch.query.EntityFinderImpl;
 
 /**
- * Servlet implementation class Panier
+ * Servlet implementation class AddPanier
  */
-@WebServlet("/accesrestreint/panier")
-public class Panier extends HttpServlet {
+@WebServlet("/accesrestreint/addpanier")
+public class AddPanier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EntityFinderImpl<Commande> efic= new EntityFinderImpl<>();
-	
-    public Panier() {
+    Utilisateur currentUser= new Utilisateur();
+    EntityFinderImpl<Commande> efic= new EntityFinderImpl<>();
+    EntityFinderImpl<Film> efif= new EntityFinderImpl<>();
+    EntityFinderImpl<CommandesFilm> eficf= new EntityFinderImpl<>();
+    
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AddPanier() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idFilm= Integer.valueOf(request.getParameter("idfilm"));
+		Film f= efif.findOne(new Film(), idFilm);
+		
 		HttpSession session= request.getSession();
-		Utilisateur currentUser= new Utilisateur();
-		if(session.getAttribute("currentUser")!= null)
-			currentUser= (Utilisateur) session.getAttribute("currentUser");
+		currentUser= (Utilisateur) session.getAttribute("currentUser");
 		
 		Map param= new HashMap();
 		param.put("id", currentUser.getIdUtilisateur());
 		param.put("status","non-paye");
 		
 		Commande panier= efic.findOneByNamedQuery("Commande.getPanier", new Commande(), param);
+		
 		if(panier == null) {
 			panier= new Commande();
 			panier.setUtilisateur(currentUser);
@@ -52,9 +61,13 @@ public class Panier extends HttpServlet {
 			panier= efic.findOneByNamedQuery("Commande.getPanier", new Commande(), param);
 		}
 		
-		request.setAttribute("commandeFilms", panier.getCommandesFilms());
-		request.setAttribute("idpanier", panier.getIdCommande());
-		this.getServletContext().getRequestDispatcher("/WEB-INF/panier.jsp").forward( request, response );
+		CommandesFilm cf= new CommandesFilm();
+		cf.setCommande(panier);
+		cf.setFilm(f);
+		eficf.insert(cf);
+		panier.addCommandesFilm(cf);
+		
+		response.sendRedirect(request.getContextPath()+"/accesrestreint/panier");
 	}
 
 }
