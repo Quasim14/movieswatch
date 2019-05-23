@@ -25,7 +25,8 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/panier")
 public class Panier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EntityFinderImpl<Commande> efic= new EntityFinderImpl<>();
+	private EntityFinderImpl<Commande> efic= new EntityFinderImpl<>();
+	private Utilisateur currentUser= new Utilisateur();
 	
     public Panier() {
         super();
@@ -34,7 +35,6 @@ public class Panier extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session= request.getSession();
-		Utilisateur currentUser= new Utilisateur();
 		if(session.getAttribute("currentUser")!= null)
 			currentUser= (Utilisateur) session.getAttribute("currentUser");
 		

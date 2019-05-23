@@ -23,10 +23,10 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/addpanier")
 public class AddPanier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    Utilisateur currentUser= new Utilisateur();
-    EntityFinderImpl<Commande> efic= new EntityFinderImpl<>();
-    EntityFinderImpl<Film> efif= new EntityFinderImpl<>();
-    EntityFinderImpl<CommandesFilm> eficf= new EntityFinderImpl<>();
+    private Utilisateur currentUser= new Utilisateur();
+    private EntityFinderImpl<Commande> efic= new EntityFinderImpl<>();
+    private EntityFinderImpl<Film> efif= new EntityFinderImpl<>();
+    private EntityFinderImpl<CommandesFilm> eficf= new EntityFinderImpl<>();
     
     /**
      * @see HttpServlet#HttpServlet()

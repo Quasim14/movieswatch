@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.movieswatch.connection.EMF;
 import com.movieswatch.model.Commande;
 import com.movieswatch.model.Facture;
+import com.movieswatch.query.CommandeQuery;
 import com.movieswatch.query.EntityFinderImpl;
 
 /**
@@ -24,7 +25,8 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/paypanier")
 public class PayPanier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
+	private EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
+	private CommandeQuery cq= new CommandeQuery();
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,34 +38,9 @@ public class PayPanier extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
-		updatePanier(idPanier);
+		cq.updatePanier(idPanier);
 		
 		response.sendRedirect(request.getContextPath()+ "/accesrestreint/mescommandes");
 		
-	}
-
-
-	private void updatePanier(int idpanier) {
-		EntityManager em = EMF.getEM();
-		try {
-			EntityTransaction transac= em.getTransaction();
-			transac.begin();
-		
-			Query query = em.createQuery("select c from Commande c where c.idCommande=:id");
-			query.setParameter("id", idpanier);
-			
-			Commande panier= (Commande) query.getSingleResult();
-			Facture f= new Facture();
-			f.setDateCommande(Date.valueOf(LocalDate.now()));
-			panier.setFacture(f);
-			panier.setStatus("paye");
-			
-			em.flush();
-			transac.commit();
-		}
-		finally {
-			em.clear();
-			em.close();
-		}
 	}
 }

@@ -16,7 +16,7 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/detailsfilm")
 public class DetailsFilm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    EntityFinderImpl<Film> efif= new EntityFinderImpl<Film>();
+    private EntityFinderImpl<Film> efif= new EntityFinderImpl<Film>();
 	
     /**
      * @see HttpServlet#HttpServlet()

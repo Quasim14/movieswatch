@@ -22,8 +22,8 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/deletemovie")
 public class DeleteMovie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
-	EntityFinderImpl<CommandesFilm> eficf = new EntityFinderImpl<CommandesFilm>();
+	private EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
+	private EntityFinderImpl<CommandesFilm> eficf = new EntityFinderImpl<CommandesFilm>();
 	
     public DeleteMovie() {
         super();

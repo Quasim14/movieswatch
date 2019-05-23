@@ -21,13 +21,13 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/detailscommande")
 public class DetailsCommande extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private EntityFinderImpl<Commande> efic = new EntityFinderImpl<>();  
+	
     public DetailsCommande() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EntityFinderImpl<Commande> efic = new EntityFinderImpl<>();
 		List<Film> films= new ArrayList<>();
 		int idcommande= Integer.valueOf(request.getParameter("idcommande"));
 		

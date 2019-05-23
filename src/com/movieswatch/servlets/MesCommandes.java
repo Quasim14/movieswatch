@@ -25,6 +25,7 @@ import com.movieswatch.query.EntityFinderImpl;
 @WebServlet("/accesrestreint/mescommandes")
 public class MesCommandes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Utilisateur currentUser= new Utilisateur();
        
    
     public MesCommandes() {
@@ -34,7 +35,6 @@ public class MesCommandes extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session= request.getSession();
-		Utilisateur currentUser= new Utilisateur();
 		if(session.getAttribute("currentUser")!= null)
 			currentUser= (Utilisateur) session.getAttribute("currentUser");
 		
