@@ -10,7 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="commandes_films")
-@NamedQuery(name="CommandesFilm.findAll", query="SELECT c FROM CommandesFilm c")
+@NamedQueries({@NamedQuery(name="CommandesFilm.findAll", query="SELECT c FROM CommandesFilm c"),
+	@NamedQuery(name="CommandesFilm.getFilm", query="SELECT c from CommandesFilm c where c.film.idFilm= :idfilm and c.commande.idCommande= :idpanier")})
 public class CommandesFilm implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,8 +20,6 @@ public class CommandesFilm implements Serializable {
 	@Column(name="ID_COMMANDE_FILM", unique=true, nullable=false)
 	private int idCommandeFilm;
 
-	@Column(name="type_commande", length=1)
-	private String typeCommande;
 
 	//bi-directional many-to-one association to Commande
 	@ManyToOne
@@ -41,14 +40,6 @@ public class CommandesFilm implements Serializable {
 
 	public void setIdCommandeFilm(int idCommandeFilm) {
 		this.idCommandeFilm = idCommandeFilm;
-	}
-
-	public String getTypeCommande() {
-		return this.typeCommande;
-	}
-
-	public void setTypeCommande(String typeCommande) {
-		this.typeCommande = typeCommande;
 	}
 
 	public Commande getCommande() {

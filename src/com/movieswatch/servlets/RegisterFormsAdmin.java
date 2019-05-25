@@ -16,7 +16,8 @@ import com.movieswatch.model.Utilisateur;
 @WebServlet("/admin/registerAdmin")
 public class RegisterFormsAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private Utilisateur utilisateur = new Utilisateur();
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,11 +40,7 @@ public class RegisterFormsAdmin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		RegisterFormsControl forms = new RegisterFormsControl();
-		
-		Utilisateur utilisateur = new Utilisateur();
-		
 		
 		utilisateur= forms.inscrireUtilisateur(request);
 		
@@ -55,8 +52,7 @@ public class RegisterFormsAdmin extends HttpServlet {
 		}else {
 			request.setAttribute("form", forms);
 			doGet(request,response);
-		}
-	
+		}	
 	}
 
 }

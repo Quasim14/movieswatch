@@ -25,7 +25,6 @@ public class FilmForm {
 	EntityFinderImpl<Personne> entityFinderImplPersonne = new EntityFinderImpl<>();
 	EntityFinderImpl<Csa> entityFinderImplCsa = new EntityFinderImpl<>();
 	
-	List<Csa> csas = new ArrayList<>();
 	Film film = new Film();
 	
 	
@@ -46,12 +45,10 @@ public class FilmForm {
 	    parametre.put("age",age);
 		
 	    
-		csas = entityFinderImplCsa.findByNamedQuery("Csa.findIdByValue",new Csa(), parametre);
+		Csa csa = entityFinderImplCsa.findOneByNamedQuery("Csa.findIdByValue",new Csa(), parametre);
 		
-		if(csas.size()>0) {
-		for(Csa c: csas) {
-			film.setCsa(c);
-		}
+		if(csa !=null) {
+			film.setCsa(csa);
 		}
 		
 		

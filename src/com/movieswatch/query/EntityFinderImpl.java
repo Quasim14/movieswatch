@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
@@ -82,6 +83,35 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 		return listT;
 	}
 	
+public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
+		
+		Class<? extends Object> ec = t.getClass();
+		
+		EntityManager em = EMF.getEM();
+		try {
+		    Query query = em.createNamedQuery(namedQuery, ec);
+		    
+	    	if(param != null) {
+	    		
+	    		setParameters(query, param);		
+	    	}
+	    	
+	    	try {
+	    		t = (T) query.getSingleResult();
+	    	}catch(NoResultException e){
+	    		return null;
+	    	}
+	    	
+	    	log.debug("Named query " + namedQuery + " find from database: Ok");	    
+		}
+		finally {
+			
+			em.clear();
+	        em.close();
+	    }
+		return t;
+	}
+	
 	@Override
 	public <K, V> List<T> findByCustomQuery(String customQuery, T t, Map<K, V> param) {
 		
@@ -136,7 +166,7 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 			transac.begin();
 			em.persist(t);
 			transac.commit();
-			log.debug("Object:" + t + " a été inserer");
+			log.debug("Object:" + t + " a ï¿½tï¿½ inserer");
 		}
 		finally {
 			em.clear();
@@ -155,7 +185,7 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 			T object= (T) em.find(ec, id);
 			if(object!=null) {
 				em.merge(t);
-				log.debug(t +" a été supprimer");
+				log.debug(t +" a ï¿½tï¿½ supprimer");
 			}
 			else 
 				log.debug("il n'existe pas d'enregistement avec cette id");
@@ -178,7 +208,7 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 		
 			if(object!=null) {
 				em.remove(object);
-				log.debug(t +" a été supprimer");
+				log.debug(t +" a ï¿½tï¿½ supprimer");
 			}
 			else 
 				log.debug("il n'existe pas d'enregistement avec cette id");

@@ -57,7 +57,7 @@ public class RegisterFormsControl {
 			break;
 	    }
 	    
-	    List<Codepostaux> codePostals =entityFinderImplCodePostal.findByNamedQuery("Codepostaux.findByNumber", codePostal, parametre) ;
+	    Codepostaux codePostal =entityFinderImplCodePostal.findOneByNamedQuery("Codepostaux.findByNumber", new Codepostaux(), parametre) ;
 	    Utilisateur utilisateur = new Utilisateur();
 	    utilisateur.setRole(role);
 	    //Faire methode de controle
@@ -71,12 +71,9 @@ public class RegisterFormsControl {
 	    utilisateur.setADrue(adresseRue);
 	    
 	    
-	    if(codePostals.size() ==1) {
-	    	
-		    for(Codepostaux value : codePostals){
-		    	utilisateur.setCodepostaux(value);
-		    }
-		    	
+	    if(codePostal != null) {	
+		    utilisateur.setCodepostaux(codePostal);
+			
 	    }else {
 	    	erreurs.put("codepostal", "Erreur code postal");
 	    }
