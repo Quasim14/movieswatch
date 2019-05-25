@@ -10,6 +10,7 @@
       <include-coda>/WEB-INF/footer.jsp</include-coda>
     </jsp-property-group>
   </jsp-config>
+  
   <filter>
     <filter-name>RestrictionFilter</filter-name>
     <filter-class>com.movieswatch.filters.RestrictionFilter</filter-class>
@@ -18,6 +19,7 @@
     <filter-name>RestrictionFilter</filter-name>
     <url-pattern>/accesrestreint/*</url-pattern>
   </filter-mapping>
+  
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

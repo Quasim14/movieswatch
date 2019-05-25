@@ -10,7 +10,7 @@
     <!-- edit form column -->
 
       
-      <form class="form-horizontal" role="form" method="post" action="<c:url value="/affichageTest" />">
+      <form class="form-horizontal" role="form" method="post" action="EditUser">
         <div class="form-group">
          <label class="col-lg-3 control-label">id:</label>
          <div class="col-lg-8">
@@ -23,6 +23,7 @@
            <input class="form-control" type="text" id="nom" name="nom" value="<c:out value="${sessionScope.currentUser.nom}"/>" >
          </div>
         </div>
+        
         <div class="form-group">
           <label class="col-lg-3 control-label">Prénom:</label>
           <div class="col-lg-8">

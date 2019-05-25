@@ -28,7 +28,6 @@
 		<class>com.movieswatch.model.PersonnesPersonnage</class>
 		<class>com.movieswatch.model.Role</class>
 		<class>com.movieswatch.model.Utilisateur</class>
-		<class>com.movieswatch.model.Test</class>
 
 	</persistence-unit>
 </persistence>

@@ -63,7 +63,7 @@
           </li>
       	</c:when>
       </c:choose>
-           	
+     </c:if>      	
             
     </ul>
   </div>
