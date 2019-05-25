@@ -1,4 +1,4 @@
-<form method="POST" action="<c:url value="/filmAdmin" />">
+<form method="POST" action="<c:url value="/admin/filmAdmin" />">
 <input name="titre" type="text"></input>
 <input name="budget" type="text"></input>
 <input name="anneeProduction" type="text"></input>

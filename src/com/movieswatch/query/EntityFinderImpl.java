@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
 import org.apache.log4j.Logger;
 
 import com.movieswatch.connection.EMF;
+import com.movieswatch.model.Utilisateur;
 
 
 /** 
@@ -124,6 +127,7 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 			//log.debug("entry.getValue: " + entry.getValue());
 		}
 	}
+
 	
 	public void insert(T t) {
 		EntityManager em = EMF.getEM();		
@@ -133,6 +137,30 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 			em.persist(t);
 			transac.commit();
 			log.debug("Object:" + t + " a été inserer");
+		}
+		finally {
+			em.clear();
+			em.close();
+		}
+	}
+	
+	
+	
+	public void edit(T t, int id) {
+		EntityManager em = EMF.getEM();
+		Class<? extends Object> ec = t.getClass();
+		try {
+			EntityTransaction transac= em.getTransaction();
+			transac.begin();
+			T object= (T) em.find(ec, id);
+			if(object!=null) {
+				em.merge(t);
+				log.debug(t +" a été supprimer");
+			}
+			else 
+				log.debug("il n'existe pas d'enregistement avec cette id");
+		
+			transac.commit();
 		}
 		finally {
 			em.clear();
@@ -187,6 +215,7 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 	    	}
 		
 	}
+
 	
 	
 }

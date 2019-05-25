@@ -4,7 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="<c:url value="/inc/css/bootstrap.css"/>" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/WebContent/inc/css/register.css">
 <meta charset="ISO-8859-1">
 <title>Moviewatch</title>
 </head>
@@ -24,11 +29,18 @@
       <li class="nav-item">
         <a class="nav-link" href="<c:url value="/registerForms"/>">Inscription</a>
       </li>
-      
+      <c:if test="${ 12 > 7 }" var="maVariable" scope="session">
       <li class="nav-item">
         <a class="nav-link" href="<c:url value="/admin/filmAdmin"/>">Ajout film</a>
       </li>
       
+       <li class="nav-item">
+        <a class="nav-link" href="<c:url value="/affichageTest"/>">edit profil</a>
+      </li>
+             <li class="nav-item">
+        <a class="nav-link" href="<c:url value="/membersList"/>">membres</a>
+      </li>
+      </c:if>
     </ul>
   </div>
 </nav>
