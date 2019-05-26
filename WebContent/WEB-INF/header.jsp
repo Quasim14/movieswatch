@@ -35,7 +35,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/affichageTest"/>">edit profil</a>
+          <a class="nav-link" href="<c:url value="/accesrestreint/edituser"/>">edit profil</a>
         </li>
       	
       <c:choose>

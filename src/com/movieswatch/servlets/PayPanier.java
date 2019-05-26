@@ -36,9 +36,7 @@ public class PayPanier extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
-		EntityManager em = EMF.getEM();
-		EntityTransaction transac= em.getTransaction();
-		transac.begin();
+		
 		Commande panier= efic.findOne(new Commande(), idPanier);
 		Facture f= new Facture();
 		f.setDateCommande(Date.valueOf(LocalDate.now()));

@@ -10,7 +10,7 @@
     <!-- edit form column -->
 
       
-      <form class="form-horizontal" role="form" method="post" action="EditUser">
+      <form class="form-horizontal" role="form" method="post" action="edituser">
         <div class="form-group">
          <label class="col-lg-3 control-label">id:</label>
          <div class="col-lg-8">
@@ -75,4 +75,3 @@
       </form>
     </div>
   </div>
-</div>

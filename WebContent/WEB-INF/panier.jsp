@@ -14,13 +14,13 @@
 
 
 	<c:choose>
-		<c:when test="${!empty commandeFilm}">
+		<c:when test="${!empty commandeFilms}">
 			<a href="<c:url value="/accesrestreint/paypanier">
 			<c:param name="idpanier" value="${idpanier}"/>
 			</c:url>">
 			payer</a>
 		</c:when>
-		<c:when test="${empty commandeFilm}">
+		<c:when test="${empty commandeFilms}">
 			Votre panier est vide
 		</c:when>
 	</c:choose>

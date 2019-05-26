@@ -1,17 +1,10 @@
 package com.movieswatch.forms;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.Session;
-
 import org.apache.log4j.Logger;
 
 import com.movieswatch.connection.EMF;
@@ -26,13 +19,9 @@ public class EditProfile {
 	EntityFinderImpl<Codepostaux> entityFinderImplCodePostal = new EntityFinderImpl<>();
 	EntityFinderImpl<Utilisateur> entityFinderImplUtilisateur = new EntityFinderImpl<>();
 	EntityFinderImpl<Role> entityFinderImplRole = new EntityFinderImpl<>();
-	//Utilisateur utilisateur = new Utilisateur();
-	
 	
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
-	private static Codepostaux codePostal = new Codepostaux();
-	private static Role role= new Role();
 	
 	public String getResultat() {
 	    return resultat;
@@ -54,14 +43,7 @@ public class EditProfile {
 	    String motdepasse = request.getParameter("motdepasse");
 	    String confirmation = request.getParameter("confirmation");
 	    log.debug("L'ID est  " +result);
-	    Map<String, String> parametre = new HashMap<String, String>(); 
-	    
-	    
-        EntityManager entitymanager =EMF.getEM();
-        entitymanager.getTransaction( ).begin( );
-       
-        Utilisateur utilisateur = entityFinderImplUtilisateur.findOne( new Utilisateur(),result );   
-	    
+	    Utilisateur utilisateur = entityFinderImplUtilisateur.findOne( new Utilisateur(),result );   
 	    
 	    utilisateur.setNumMobile(telephone);   
 	    utilisateur.setPrenom(prenom);

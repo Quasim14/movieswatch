@@ -12,9 +12,9 @@ import com.movieswatch.forms.EditProfile;
 import com.movieswatch.model.Utilisateur;
 
 /**
- * Servlet implementation class AffichageTest
+ * Servlet implementation class EditUser
  */
-@WebServlet("accesrestreint/edituser")
+@WebServlet("/accesrestreint/edituser")
 public class EditUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,15 +29,12 @@ public class EditUser extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session= request.getSession();
 		EditProfile editProfile = new EditProfile ();
@@ -49,7 +46,7 @@ public class EditUser extends HttpServlet {
 		
 		if(editProfile.getErreurs().isEmpty()) {
 			session.setAttribute("currentUser", utilisateur);
-			response.sendRedirect(request.getContextPath() +"accesrestreint/edituser");
+			response.sendRedirect(request.getContextPath() +"/accesrestreint/edituser");
 
 		}else {
 			request.setAttribute("editProfile", editProfile);
