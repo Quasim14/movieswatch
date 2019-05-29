@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="movieswatch"  transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<jta-data-source>java:comp/env/jdbc/movieswatch</jta-data-source>
+		<class>com.movieswatch.model.Abonnement</class>
+		<class>com.movieswatch.model.AbonnementsCommande</class>
+		<class>com.movieswatch.model.CartesBancaire</class>
+		<class>com.movieswatch.model.Codepostaux</class>
+		<class>com.movieswatch.model.Commande</class>
+		<class>com.movieswatch.model.CommandesFilm</class>
+		<class>com.movieswatch.model.Csa</class>
+		<class>com.movieswatch.model.Document</class>
+		<class>com.movieswatch.model.Facture</class>
+		<class>com.movieswatch.model.Film</class>
+		<class>com.movieswatch.model.FilmsGenre</class>
+		<class>com.movieswatch.model.FilmsPay</class>
+		<class>com.movieswatch.model.FilmsPersonnage</class>
+		<class>com.movieswatch.model.FilmsPersonne</class>
+		<class>com.movieswatch.model.FilmsUtilisateur</class>
+		<class>com.movieswatch.model.Format</class>
+		<class>com.movieswatch.model.FormatsFilm</class>
+		<class>com.movieswatch.model.Genre</class>
+		<class>com.movieswatch.model.Pay</class>
+		<class>com.movieswatch.model.Permission</class>
+		<class>com.movieswatch.model.PermissionsRole</class>
+		<class>com.movieswatch.model.Personnage</class>
+		<class>com.movieswatch.model.Personne</class>
+		<class>com.movieswatch.model.PersonnesPersonnage</class>
+		<class>com.movieswatch.model.Role</class>
+		<class>com.movieswatch.model.Utilisateur</class>
+		
+		<properties>
+			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>				
+		</properties>	
+	</persistence-unit>
+</persistence>
