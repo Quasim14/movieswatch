@@ -45,7 +45,7 @@ public class FilmForm {
 	    parametre.put("age",age);
 		
 	    
-		Csa csa = entityFinderImplCsa.findOneByNamedQuery("Csa.findIdByValue",new Csa(), parametre);
+		Csa csa = entityFinderImplCsa.findOneByNamedQuery("Csa.findIdByValue", new Csa(), parametre);
 		
 		if(csa !=null) {
 			film.setCsa(csa);
