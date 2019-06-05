@@ -3,7 +3,6 @@ package com.movieswatch.query;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
 
 /**
  * 
@@ -57,3 +56,4 @@ public interface EntityFinder<T> {
 	 */	
 	public <K, V> List<T> findByCustomQuery(String customQuery, T t, Map<K, V> param);	
 }
+

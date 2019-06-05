@@ -46,7 +46,6 @@ public class Film implements Serializable {
 	private List<CommandesFilm> commandesFilms;
 
 	//bi-directional many-to-one association to Csa
-	@ManyToOne
 	@JoinColumn(name="ID_CSA", nullable=false)
 	private Csa csa;
 

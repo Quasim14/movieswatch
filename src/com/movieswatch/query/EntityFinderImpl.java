@@ -3,8 +3,10 @@ package com.movieswatch.query;
 import java.io.Serializable;
 import java.util.*;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
@@ -12,6 +14,8 @@ import javax.persistence.TemporalType;
 import org.apache.log4j.Logger;
 
 import com.movieswatch.connection.EMF;
+import com.movieswatch.model.Utilisateur;
+
 
 /** 
  * Class to perform entity CRUD with the database
@@ -79,6 +83,35 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 		return listT;
 	}
 	
+public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
+
+		Class<? extends Object> ec = t.getClass();
+
+		EntityManager em = EMF.getEM();
+		try {
+		    Query query = em.createNamedQuery(namedQuery, ec);
+
+	    	if(param != null) {
+
+	    		setParameters(query, param);
+	    	}
+
+	    	try {
+	    		t = (T) query.getSingleResult();
+	    	}catch(NoResultException e){
+	    		return null;
+	    	}
+
+	    	log.debug("Named query " + namedQuery + " find from database: Ok");
+		}
+		finally {
+
+			em.clear();
+	        em.close();
+	    }
+		return t;
+	}
+
 	@Override
 	public <K, V> List<T> findByCustomQuery(String customQuery, T t, Map<K, V> param) {
 		
@@ -93,8 +126,8 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 	    		setParameters(query, param);
 	    	}
 	    	listT = (List<T>) query.getResultList();
-	    	    	
-	    	log.debug("List " + t + " size: " + listT.size());       
+
+	    	log.debug("List " + t + " size: " + listT.size());
 	    	log.debug("Custom query " + customQuery + " find from database: Ok");
 		}
 		finally {
@@ -104,7 +137,6 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 	    }
 		return listT;
 	}
-		
 
 	/**  
 	 * @param query
@@ -125,5 +157,70 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 			//log.debug("entry.getValue: " + entry.getValue());
 		}
 	}
+
+
+	public void insert(T t) {
+		EntityManager em = EMF.getEM();
+		try {
+			EntityTransaction transac= em.getTransaction();
+			transac.begin();
+			em.persist(t);
+			transac.commit();
+			log.debug("Object:" + t + " a �t� inserer");
+		}
+		finally {
+			em.clear();
+			em.close();
+		}
+	}
+
+
+
+	public void edit(T t, int id) {
+		EntityManager em = EMF.getEM();
+		Class<? extends Object> ec = t.getClass();
+		try {
+			EntityTransaction transac= em.getTransaction();
+			transac.begin();
+			T object= (T) em.find(ec, id);
+			if(object!=null) {
+				em.merge(t);
+				log.debug(t +" a �t� supprimer");
+			}
+			else
+				log.debug("il n'existe pas d'enregistement avec cette id");
+
+			transac.commit();
+		}
+		finally {
+			em.clear();
+			em.close();
+		}
+	}
+
+	public void delete(T t, int id) {
+		EntityManager em = EMF.getEM();
+		Class<? extends Object> ec = t.getClass();
+		try {
+			EntityTransaction transac= em.getTransaction();
+			transac.begin();
+			T object= (T) em.find(ec, id);
+
+			if(object!=null) {
+				em.remove(object);
+				log.debug(t +" a �t� supprimer");
+			}
+			else
+				log.debug("il n'existe pas d'enregistement avec cette id");
+
+			transac.commit();
+		}
+		finally {
+			em.clear();
+			em.close();
+		}
+	}
+
+
 
 }

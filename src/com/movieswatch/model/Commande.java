@@ -11,7 +11,8 @@ import java.util.List;
  */
 @Entity
 @Table(name="commandes")
-@NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c")
+@NamedQueries({@NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c"),
+	@NamedQuery(name="Commande.getPanier", query="select c from Commande c where c.utilisateur.idUtilisateur = :id and c.status =:status")})
 public class Commande implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,17 +24,13 @@ public class Commande implements Serializable {
 	@Column(length=1)
 	private String status;
 
-	//bi-directional many-to-one association to AbonnementsCommande
-	@OneToMany(mappedBy="commande")
-	private List<AbonnementsCommande> abonnementsCommandes;
-
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
 	@JoinColumn(name="ID_UTILISATEUR", nullable=false)
 	private Utilisateur utilisateur;
 
 	//bi-directional many-to-one association to Facture
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="ID_FACTURE", nullable=false)
 	private Facture facture;
 
@@ -58,28 +55,6 @@ public class Commande implements Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public List<AbonnementsCommande> getAbonnementsCommandes() {
-		return this.abonnementsCommandes;
-	}
-
-	public void setAbonnementsCommandes(List<AbonnementsCommande> abonnementsCommandes) {
-		this.abonnementsCommandes = abonnementsCommandes;
-	}
-
-	public AbonnementsCommande addAbonnementsCommande(AbonnementsCommande abonnementsCommande) {
-		getAbonnementsCommandes().add(abonnementsCommande);
-		abonnementsCommande.setCommande(this);
-
-		return abonnementsCommande;
-	}
-
-	public AbonnementsCommande removeAbonnementsCommande(AbonnementsCommande abonnementsCommande) {
-		getAbonnementsCommandes().remove(abonnementsCommande);
-		abonnementsCommande.setCommande(null);
-
-		return abonnementsCommande;
 	}
 
 	public Utilisateur getUtilisateur() {
