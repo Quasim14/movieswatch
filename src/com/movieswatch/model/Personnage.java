@@ -6,11 +6,11 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Personnages database table.
+ * The persistent class for the personnages database table.
  * 
  */
 @Entity
-@Table(name="Personnages")
+@Table(name="personnages")
 @NamedQuery(name="Personnage.findAll", query="SELECT p FROM Personnage p")
 public class Personnage implements Serializable {
 	private static final long serialVersionUID = 1L;
