@@ -41,12 +41,12 @@ public class Facture implements Serializable {
 		this.idFacture = idFacture;
 	}
 
-	public Date getDate() {
-		return this.date;
+	public Date getDateCommande() {
+		return dateCommande;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateCommande(Date dateCommande) {
+		this.dateCommande = dateCommande;
 	}
 
 	public List<Commande> getCommandes() {

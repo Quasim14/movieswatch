@@ -42,14 +42,6 @@ public class CommandesFilm implements Serializable {
 		this.idCommandeFilm = idCommandeFilm;
 	}
 
-	public String getTypeCommande() {
-		return this.typeCommande;
-	}
-
-	public void setTypeCommande(String typeCommande) {
-		this.typeCommande = typeCommande;
-	}
-
 	public Commande getCommande() {
 		return this.commande;
 	}
