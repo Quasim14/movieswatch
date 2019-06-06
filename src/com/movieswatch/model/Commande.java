@@ -11,7 +11,8 @@ import java.util.List;
  */
 @Entity
 @Table(name="commandes")
-@NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c")
+@NamedQueries({@NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c"),
+	@NamedQuery(name="Commande.getPanier", query="select c from Commande c where c.utilisateur.idUtilisateur = :id and c.status =:status")})
 public class Commande implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,15 +24,15 @@ public class Commande implements Serializable {
 	@Column(length=1)
 	private String status;
 
-	//bi-directional many-to-one association to Facture
-	@ManyToOne
-	@JoinColumn(name="ID_FACTURE")
-	private Facture facture;
-
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
 	@JoinColumn(name="ID_UTILISATEUR", nullable=false)
 	private Utilisateur utilisateur;
+
+	//bi-directional many-to-one association to Facture
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="ID_FACTURE", nullable=false)
+	private Facture facture;
 
 	//bi-directional many-to-one association to CommandesFilm
 	@OneToMany(mappedBy="commande")
@@ -56,20 +57,20 @@ public class Commande implements Serializable {
 		this.status = status;
 	}
 
-	public Facture getFacture() {
-		return this.facture;
-	}
-
-	public void setFacture(Facture facture) {
-		this.facture = facture;
-	}
-
 	public Utilisateur getUtilisateur() {
 		return this.utilisateur;
 	}
 
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+
+	public Facture getFacture() {
+		return this.facture;
+	}
+
+	public void setFacture(Facture facture) {
+		this.facture = facture;
 	}
 
 	public List<CommandesFilm> getCommandesFilms() {

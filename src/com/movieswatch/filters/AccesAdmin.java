@@ -22,7 +22,7 @@ import com.movieswatch.model.Utilisateur;
  */
 @WebFilter("/admin/*")
 public class AccesAdmin implements Filter {
-    private static Logger log = Logger.getLogger(AccesAdmin.class);
+	private static Logger log = Logger.getLogger(AccesAdmin.class);
 
     /**
      * Default constructor.
@@ -31,47 +31,47 @@ public class AccesAdmin implements Filter {
         // TODO Auto-generated constructor stub
     }
 
-    /**
-     * @see Filter#destroy()
-     */
-    public void destroy() {
-        // TODO Auto-generated method stub
-    }
+	/**
+	 * @see Filter#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
 
-    /**
-     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-     */
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp= (HttpServletResponse) response;
-        HttpSession session= req.getSession();
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 
-        Utilisateur user = new Utilisateur();
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp= (HttpServletResponse) response;
+		HttpSession session= req.getSession();
 
 
-        if((user= (Utilisateur) session.getAttribute("currentUser")) !=null) {
-            if(user.getRole().getNomRole().equals("Admin")) {
-                chain.doFilter(req, resp);
-            }else {
-                log.debug(user.getRole().getNomRole());
-                session.getServletContext().getRequestDispatcher("/WEB-INF/accesRefuser.jsp").forward(req, resp);
-            }
-        }else {
-            session.getServletContext().getRequestDispatcher("/WEB-INF/accesRefuser.jsp").forward(req, resp);
-        }
+		Utilisateur user = new Utilisateur();
+
+
+		if((user= (Utilisateur) session.getAttribute("currentUser")) !=null) {
+			if(user.getRole().getNomRole().equals("Admin")) {
+				chain.doFilter(req, resp);
+			}else {
+				log.debug(user.getRole().getNomRole());
+				session.getServletContext().getRequestDispatcher("/WEB-INF/accesRefuser.jsp").forward(req, resp);
+			}
+		}else {
+			session.getServletContext().getRequestDispatcher("/WEB-INF/accesRefuser.jsp").forward(req, resp);
+		}
 
 
 
-    }
+	}
 
-    /**
-     * @see Filter#init(FilterConfig)
-     */
-    public void init(FilterConfig fConfig) throws ServletException {
-        // TODO Auto-generated method stub
-    }
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
+	public void init(FilterConfig fConfig) throws ServletException {
+		// TODO Auto-generated method stub
+	}
 
 }

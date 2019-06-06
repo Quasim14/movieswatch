@@ -1,8 +1,8 @@
 
 <p>fhfh</p>
 <form method="post" action="<c:url value="/formAddUser" />">
-    <fieldset>
-        <legend>Inscription</legend>
+	<fieldset>
+    	<legend>Inscription</legend>
         <p>Vous pouvez vous inscrire via ce formulaire.</p>
 
         <label for="nom">Nom</label>
@@ -14,7 +14,7 @@
         <span class="erreur">${form.erreurs['email']}</span>
         <br />
         <br />
-        <input type="submit" value="Inscription" class="btn btn-info" />
+                <input type="submit" value="Inscription" class="btn btn-info" />
         <br />
-        </body>
-        </html>
+</body>
+</html>

@@ -17,42 +17,42 @@ import com.movieswatch.model.Personne;
 import com.movieswatch.query.EntityFinderImpl;
 
 public class FilmForm {
-    private static Logger log = Logger.getLogger(FilmForm.class);
+	private static Logger log = Logger.getLogger(FilmForm.class);
 
 
-    EntityFinderImpl<Film> entityFinderImplFilm = new EntityFinderImpl<>();
-    EntityFinderImpl<Personnage> entityFinderImplPersonnage = new EntityFinderImpl<>();
-    EntityFinderImpl<Personne> entityFinderImplPersonne = new EntityFinderImpl<>();
-    EntityFinderImpl<Csa> entityFinderImplCsa = new EntityFinderImpl<>();
+	EntityFinderImpl<Film> entityFinderImplFilm = new EntityFinderImpl<>();
+	EntityFinderImpl<Personnage> entityFinderImplPersonnage = new EntityFinderImpl<>();
+	EntityFinderImpl<Personne> entityFinderImplPersonne = new EntityFinderImpl<>();
+	EntityFinderImpl<Csa> entityFinderImplCsa = new EntityFinderImpl<>();
 
-    Film film = new Film();
-
-
-    public Film setFilm(HttpServletRequest request){
-
-        film.setTitreOriginal(request.getParameter("titre"));
-
-        film.setBudget(request.getParameter("budget"));
-        film.setAnneeProduction(request.getParameter("anneeProduction"));
-        film.setSynopsis(request.getParameter("synopsis"));
-        film.setMetrage(request.getParameter("metrage"));
-        film.setUrlAffiche(request.getParameter("urlAffiche"));
-        film.setNumIsan(request.getParameter("isan"));
-
-        Map<String, String> parametre = new HashMap<String, String>();
-        String age = request.getParameter("age");
-        log.debug(age);
-        parametre.put("age",age);
+	Film film = new Film();
 
 
-        Csa csa = entityFinderImplCsa.findOneByNamedQuery("Csa.findIdByValue",new Csa(), parametre);
+	public Film setFilm(HttpServletRequest request){
 
-        if(csa !=null) {
-            film.setCsa(csa);
-        }
+		film.setTitreOriginal(request.getParameter("titre"));
+
+		film.setBudget(request.getParameter("budget"));
+		film.setAnneeProduction(request.getParameter("anneeProduction"));
+		film.setSynopsis(request.getParameter("synopsis"));
+		film.setMetrage(request.getParameter("metrage"));
+		film.setUrlAffiche(request.getParameter("urlAffiche"));
+		film.setNumIsan(request.getParameter("isan"));
+
+	    Map<String, String> parametre = new HashMap<String, String>();
+	    String age = request.getParameter("age");
+	    log.debug(age);
+	    parametre.put("age",age);
 
 
-        entityFinderImplFilm.insert(film);
-        return film;
-    }
+		Csa csa = entityFinderImplCsa.findOneByNamedQuery("Csa.findIdByValue",new Csa(), parametre);
+
+		if(csa !=null) {
+			film.setCsa(csa);
+		}
+
+
+		entityFinderImplFilm.insert(film);
+		return film;
+	}
 }

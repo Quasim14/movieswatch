@@ -23,8 +23,8 @@ import com.movieswatch.query.EntityFinderImpl;
  */
 @WebServlet("/accesrestreint/paypanier")
 public class PayPanier extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
+	private static final long serialVersionUID = 1L;
+	private EntityFinderImpl<Commande> efic = new EntityFinderImpl<Commande>();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,31 +34,19 @@ public class PayPanier extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idPanier= Integer.valueOf(request.getParameter("idpanier"));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
 
-        EntityManager em= EMF.getEM();
-        try {
-            EntityTransaction transac= em.getTransaction();
-            transac.begin();
-            Commande panier= (Commande) em.find(Commande.class, idPanier);
+		Commande panier= efic.findOne(new Commande(), idPanier);
+		Facture f= new Facture();
+		f.setDateCommande(Date.valueOf(LocalDate.now()));
+		panier.setFacture(f);
+		panier.setStatus("paye");
 
-            if(panier!=null) {
-                Facture f= new Facture();
-                f.setDateCommande(Date.valueOf(LocalDate.now()));
-                panier.setFacture(f);
-                panier.setStatus("paye");
-                em.merge(panier);
-            }
+		efic.edit(panier, idPanier);
 
-            transac.commit();
-        }
-        finally {
-            em.clear();
-            em.close();
-        }
 
-        response.sendRedirect(request.getContextPath()+ "/accesrestreint/mescommandes");
+		response.sendRedirect(request.getContextPath()+ "/accesrestreint/mescommandes");
 
-    }
+	}
 }

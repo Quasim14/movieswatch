@@ -1,4 +1,4 @@
-<form method="post" action="<c:url value="/registerForms" />">
+<form action="<c:url value="/registerForms" />" method="post">
     <fieldset>
         <legend>Inscription</legend>
         <p>Vous pouvez vous inscrire via ce formulaire.</p>

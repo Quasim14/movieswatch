@@ -1,6 +1,6 @@
-<form method="post" action="<c:url value="/registerForms" />">
-    <fieldset>
-        <legend>Inscription</legend>
+<form method="post" action="<c:url value="/admin/registerAdmin" />">
+	<fieldset>
+    	<legend>Inscription</legend>
         <p>Vous pouvez vous inscrire via ce formulaire.</p>
 
         <label for="nom">Nom</label>
@@ -49,9 +49,9 @@
         <br />
 
         <select name ="role">
-            <option value="Admin">Administrateur</option>
-            <option value="Utilisateur">Utilisateur</option>
-            <option value="Comptable">Comptable</option>
+        	<option value="Admin">Administrateur</option>
+        	<option value="Utilisateur">Utilisateur</option>
+        	<option value="Comptable">Comptable</option>
         </select>
 
 
@@ -59,5 +59,5 @@
         <br />
 
         <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
-    </fieldset>
+	</fieldset>
 </form>

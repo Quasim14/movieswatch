@@ -12,7 +12,7 @@ import com.movieswatch.query.EntityFinderImpl;
 
 public final class ConnexionForm {
 
-    private EntityFinderImpl<Utilisateur> entityFinderImplUtilisateur = new EntityFinderImpl<>();
+	private EntityFinderImpl<Utilisateur> entityFinderImplUtilisateur = new EntityFinderImpl<>();
     private Map<String, String> erreurs      = new HashMap<String, String>();
 
 
@@ -32,10 +32,10 @@ public final class ConnexionForm {
         param.put("password",motDePasse);
         Utilisateur user= entityFinderImplUtilisateur.findOneByNamedQuery("Utilisateur.connexion", utilisateur, param);
         if(user !=null) {
-            utilisateur = user;
+        	utilisateur = user;
 
         }else {
-            erreurs.put("user", "Votre login ou votre mot de passe est mauvais");
+        	erreurs.put("user", "Votre login ou votre mot de passe est mauvais");
         }
 
         return utilisateur;

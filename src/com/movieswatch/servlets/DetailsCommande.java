@@ -20,26 +20,26 @@ import com.movieswatch.query.EntityFinderImpl;
  */
 @WebServlet("/accesrestreint/detailscommande")
 public class DetailsCommande extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private EntityFinderImpl<Commande> efic = new EntityFinderImpl<>();
+	private static final long serialVersionUID = 1L;
+	private EntityFinderImpl<Commande> efic = new EntityFinderImpl<>();
 
     public DetailsCommande() {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Film> films= new ArrayList<>();
-        int idcommande= Integer.valueOf(request.getParameter("idcommande"));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Film> films= new ArrayList<>();
+		int idcommande= Integer.valueOf(request.getParameter("idcommande"));
 
-        Commande commande= efic.findOne(new Commande(), idcommande);
-        for(CommandesFilm cf: commande.getCommandesFilms())
-        {
-            films.add(cf.getFilm());
-        }
+		Commande commande= efic.findOne(new Commande(), idcommande);
+		for(CommandesFilm cf: commande.getCommandesFilms())
+		{
+			films.add(cf.getFilm());
+		}
 
-        request.setAttribute("films", films);
-        this.getServletContext().getRequestDispatcher("/WEB-INF/detailscommande.jsp").forward( request, response );
-    }
+		request.setAttribute("films", films);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/detailscommande.jsp").forward( request, response );
+	}
 
 
 }

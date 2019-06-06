@@ -24,8 +24,8 @@ import com.movieswatch.query.EntityFinderImpl;
  */
 @WebServlet("/accesrestreint/mescommandes")
 public class MesCommandes extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private Utilisateur currentUser= new Utilisateur();
+	private static final long serialVersionUID = 1L;
+	private Utilisateur currentUser= new Utilisateur();
 
 
     public MesCommandes() {
@@ -33,21 +33,21 @@ public class MesCommandes extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session= request.getSession();
-        if(session.getAttribute("currentUser")!= null)
-            currentUser= (Utilisateur) session.getAttribute("currentUser");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session= request.getSession();
+		if(session.getAttribute("currentUser")!= null)
+			currentUser= (Utilisateur) session.getAttribute("currentUser");
 
-        EntityFinderImpl<Commande> etic= new EntityFinderImpl<>();
-        Map param= new HashMap();
+		EntityFinderImpl<Commande> etic= new EntityFinderImpl<>();
+		Map param= new HashMap();
 
-        param.put("id", currentUser.getIdUtilisateur());
-        param.put("status","paye");
-        List<Commande> commandes= etic.findByNamedQuery("Commande.getPanier", new Commande(), param);
+		param.put("id", currentUser.getIdUtilisateur());
+		param.put("status","paye");
+		List<Commande> commandes= etic.findByNamedQuery("Commande.getPanier", new Commande(), param);
 
-        request.setAttribute("commandes", commandes);
-        this.getServletContext().getRequestDispatcher("/WEB-INF/mescommandes.jsp").forward( request, response );
-    }
+		request.setAttribute("commandes", commandes);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/mescommandes.jsp").forward( request, response );
+	}
 
 
 }

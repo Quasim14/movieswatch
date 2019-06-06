@@ -15,7 +15,7 @@ import com.movieswatch.model.Film;
  */
 @WebServlet("/admin/filmAdmin")
 public class FilmAdmin extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -25,32 +25,32 @@ public class FilmAdmin extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        this.getServletContext().getRequestDispatcher("/WEB-INF/filmAdmin.jsp").forward( request, response );
-    }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		this.getServletContext().getRequestDispatcher("/WEB-INF/filmAdmin.jsp").forward( request, response );
+	}
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
 
-        FilmForm ff = new FilmForm();
+		FilmForm ff = new FilmForm();
 
-        Film f = new Film();
+		Film f = new Film();
 
-        f = ff.setFilm(request);
+		f = ff.setFilm(request);
 
-        request.setAttribute("film", f);
+		request.setAttribute("film", f);
 
-        request.setAttribute("ff", ff);
+		request.setAttribute("ff", ff);
 
-        doGet(request, response);
-    }
+		doGet(request, response);
+	}
 
 }

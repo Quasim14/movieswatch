@@ -84,34 +84,34 @@ public class EntityFinderImpl<T> implements EntityFinder<T>, Serializable {
 	}
 	
 public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
-
+		
 		Class<? extends Object> ec = t.getClass();
-
+		
 		EntityManager em = EMF.getEM();
 		try {
 		    Query query = em.createNamedQuery(namedQuery, ec);
-
+		    
 	    	if(param != null) {
-
-	    		setParameters(query, param);
+	    		
+	    		setParameters(query, param);		
 	    	}
-
+	    	
 	    	try {
 	    		t = (T) query.getSingleResult();
 	    	}catch(NoResultException e){
 	    		return null;
 	    	}
-
-	    	log.debug("Named query " + namedQuery + " find from database: Ok");
+	    	
+	    	log.debug("Named query " + namedQuery + " find from database: Ok");	    
 		}
 		finally {
-
+			
 			em.clear();
 	        em.close();
 	    }
 		return t;
 	}
-
+	
 	@Override
 	public <K, V> List<T> findByCustomQuery(String customQuery, T t, Map<K, V> param) {
 		
@@ -126,7 +126,7 @@ public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
 	    		setParameters(query, param);
 	    	}
 	    	listT = (List<T>) query.getResultList();
-
+	    	   
 	    	log.debug("List " + t + " size: " + listT.size());
 	    	log.debug("Custom query " + customQuery + " find from database: Ok");
 		}
@@ -158,9 +158,9 @@ public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
 		}
 	}
 
-
+	
 	public void insert(T t) {
-		EntityManager em = EMF.getEM();
+		EntityManager em = EMF.getEM();		
 		try {
 			EntityTransaction transac= em.getTransaction();
 			transac.begin();
@@ -173,9 +173,9 @@ public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
 			em.close();
 		}
 	}
-
-
-
+	
+	
+	
 	public void edit(T t, int id) {
 		EntityManager em = EMF.getEM();
 		Class<? extends Object> ec = t.getClass();
@@ -187,9 +187,9 @@ public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
 				em.merge(t);
 				log.debug(t +" a �t� supprimer");
 			}
-			else
+			else 
 				log.debug("il n'existe pas d'enregistement avec cette id");
-
+		
 			transac.commit();
 		}
 		finally {
@@ -197,7 +197,7 @@ public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
 			em.close();
 		}
 	}
-
+	
 	public void delete(T t, int id) {
 		EntityManager em = EMF.getEM();
 		Class<? extends Object> ec = t.getClass();
@@ -205,14 +205,14 @@ public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
 			EntityTransaction transac= em.getTransaction();
 			transac.begin();
 			T object= (T) em.find(ec, id);
-
+		
 			if(object!=null) {
 				em.remove(object);
 				log.debug(t +" a �t� supprimer");
 			}
-			else
+			else 
 				log.debug("il n'existe pas d'enregistement avec cette id");
-
+		
 			transac.commit();
 		}
 		finally {
@@ -221,6 +221,6 @@ public <K, V> T findOneByNamedQuery(String namedQuery, T t, Map<K, V> param) {
 		}
 	}
 
-
-
+	
+	
 }

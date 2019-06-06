@@ -1,18 +1,4 @@
-<style>
-
-    .carousel{
-        background: #2f4357;
-        margin-top: 20px;
-    }
-    .carousel-item{
-        text-align: center;
-        min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
-    }
-    .bs-example{
-        margin: 20px;
-    }
-</style>
-
+<style><%@include file="/WEB-INF/inc/css/carousel.css"%></style>
 <c:out value="Bienvenue ${sessionScope.currentUser.prenom }"></c:out><br>
 
 <a href=" <c:url value="/accesrestreint/deconnexion"/>">Se deconnecter</a>

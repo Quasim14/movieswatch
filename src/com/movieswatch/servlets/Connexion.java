@@ -21,24 +21,24 @@ public class Connexion extends HttpServlet {
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward( request, response );
+    		this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward( request, response );
     }
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        ConnexionForm form = new ConnexionForm();
+    	HttpSession session = request.getSession();
+    	ConnexionForm form = new ConnexionForm();
 
-        Utilisateur utilisateur = form.connecterUtilisateur( request );
+    	Utilisateur utilisateur = form.connecterUtilisateur( request );
 
-        request.setAttribute( "utilisateur", utilisateur );
-        if ( form.getErreurs().isEmpty() ) {
-            session.setAttribute( "currentUser", utilisateur );
-            response.sendRedirect(request.getContextPath() + "/accesrestreint/accueil");
-        } else {
-            session.setAttribute( "currentUser", null );
-            request.setAttribute( "form", form );
-            doGet(request,response);
-        }
+    	request.setAttribute( "utilisateur", utilisateur );
+    	if ( form.getErreurs().isEmpty() ) {
+    		session.setAttribute( "currentUser", utilisateur );
+    		response.sendRedirect(request.getContextPath() + "/accesrestreint/accueil");
+    	} else {
+    		session.setAttribute( "currentUser", null );
+    		request.setAttribute( "form", form );
+    		doGet(request,response);
+    	}
 
     }
 

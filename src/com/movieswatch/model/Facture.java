@@ -2,6 +2,7 @@ package com.movieswatch.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class Facture implements Serializable {
 	private int idFacture;
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
-	private Date date;
+	@Column(name="Date", nullable=false)
+	private Date dateCommande;
 
 	//bi-directional many-to-one association to Commande
 	@OneToMany(mappedBy="facture")
@@ -40,12 +41,12 @@ public class Facture implements Serializable {
 		this.idFacture = idFacture;
 	}
 
-	public Date getDate() {
-		return this.date;
+	public Date getDateCommande() {
+		return dateCommande;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateCommande(Date dateCommande) {
+		this.dateCommande = dateCommande;
 	}
 
 	public List<Commande> getCommandes() {

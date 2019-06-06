@@ -12,7 +12,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="utilisateurs")
-@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
+@NamedQueries({
+	@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u"),
+	@NamedQuery(name="Utilisateur.findById", query="SELECT u FROM Utilisateur u WHERE u.idUtilisateur = :id"),
+	@NamedQuery(name="Utilisateur.findByEmail", query="SELECT u FROM Utilisateur u WHERE u.email = :email"),
+	@NamedQuery(name="Utilisateur.connexion", query="SELECT u FROM Utilisateur u where u.email = :email and u.passwd = :password ")})
 public class Utilisateur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +24,7 @@ public class Utilisateur implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_UTILISATEUR", unique=true, nullable=false)
 	private int idUtilisateur;
+
 
 	@Column(length=255)
 	private String ADrue;
@@ -34,7 +39,7 @@ public class Utilisateur implements Serializable {
 	@Column(length=255)
 	private String nom;
 
-	@Column(name="num_mobile", length=45)
+	@Column(name="num_mobile", nullable=false, length=45)
 	private String numMobile;
 
 	@Column(nullable=false, length=255)
@@ -55,11 +60,6 @@ public class Utilisateur implements Serializable {
 	@OneToMany(mappedBy="utilisateur")
 	private List<FilmsUtilisateur> filmsUtilisateurs;
 
-	//bi-directional many-to-one association to Codepostaux
-	@ManyToOne
-	@JoinColumn(name="ID_CODEPOSTAL", nullable=false)
-	private Codepostaux codepostaux;
-
 	//bi-directional many-to-one association to Role
 	@ManyToOne
 	@JoinColumn(name="ID_ROLE", nullable=false)
@@ -67,12 +67,17 @@ public class Utilisateur implements Serializable {
 
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
-	@JoinColumn(name="REFERE")
+	@JoinColumn(name="REFERE", nullable=false)
 	private Utilisateur utilisateur;
 
 	//bi-directional many-to-one association to Utilisateur
 	@OneToMany(mappedBy="utilisateur")
 	private List<Utilisateur> utilisateurs;
+
+	//bi-directional many-to-one association to Codepostaux
+	@ManyToOne
+	@JoinColumn(name="ID_CODEPOSTAL", nullable=false)
+	private Codepostaux codepostaux;
 
 	public Utilisateur() {
 	}
@@ -84,6 +89,7 @@ public class Utilisateur implements Serializable {
 	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
+
 
 	public String getADrue() {
 		return this.ADrue;
@@ -207,14 +213,6 @@ public class Utilisateur implements Serializable {
 		return filmsUtilisateur;
 	}
 
-	public Codepostaux getCodepostaux() {
-		return this.codepostaux;
-	}
-
-	public void setCodepostaux(Codepostaux codepostaux) {
-		this.codepostaux = codepostaux;
-	}
-
 	public Role getRole() {
 		return this.role;
 	}
@@ -251,6 +249,14 @@ public class Utilisateur implements Serializable {
 		utilisateur.setUtilisateur(null);
 
 		return utilisateur;
+	}
+
+	public Codepostaux getCodepostaux() {
+		return this.codepostaux;
+	}
+
+	public void setCodepostaux(Codepostaux codepostaux) {
+		this.codepostaux = codepostaux;
 	}
 
 }
