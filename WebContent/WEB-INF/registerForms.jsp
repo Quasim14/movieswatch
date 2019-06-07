@@ -1,7 +1,6 @@
-<style><%@include file="/WEB-INF/inc/css/connexion.css"%></style>
 
+<link href="${pageContext.request.contextPath}/inc/css/connexion.css" rel="stylesheet">
 
- <script src="<c:url value="/WEB-INF/inc/js/carousel.jsp" />"></script>
 
 <div class="signup-form">
     <form method="post" action="<c:url value="/registerForms" />">

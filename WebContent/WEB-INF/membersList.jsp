@@ -5,23 +5,20 @@
                     <div class="col-sm-5">
 						<h2>User <b>Management</b></h2>
 					</div>
-					<div class="col-sm-7">
-						<a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un utilisateur</span></a>				
-					</div>
                 </div>
             </div>
             
-                    <div class="col-sm-5">
-						<h2>Liste administrateur</h2>
-					</div>            
+        <div class="col-sm-5">
+			<h2>Liste administrateur</h2>
+		</div>            
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Nom</th>						
-						<th>Email</th>
-						<th>Role</th>
-						<th>Action</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>						
+						<th scope="col">Email</th>
+						<th scope="col">Role</th>
+						<th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,11 +42,16 @@
                 </c:forEach>
 
                 </tbody>
+                
             </table>
-                                <div class="col-sm-5">
-						<h2>Liste Utilisateur</h2>
-					</div>
-                        <table class="table table-striped table-hover">
+           <div class="col-sm-7">
+				<a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un utilisateur</span></a>				
+			</div>
+			<br>
+       		<div class="col-sm-5">
+				<h2>Liste Utilisateur</h2>
+			</div>
+                 <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>#</th>

@@ -2,7 +2,7 @@
 <p>
 <c:forEach items="${commandes}" var="commande">
 Le ${commande.facture.dateCommande}<br>
-Num�ro de commande: ${commande.idCommande}
+Numero de commande: ${commande.idCommande}
 <a href="<c:url value="/accesrestreint/detailscommande">
 	<c:param name="idcommande" value="${commande.idCommande }"/>
 </c:url>">

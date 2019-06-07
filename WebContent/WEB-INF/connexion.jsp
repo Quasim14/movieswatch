@@ -1,5 +1,5 @@
+<link href="${pageContext.request.contextPath}/inc/css/connexion.css" rel="stylesheet">
 
-<style><%@include file="/WEB-INF/inc/css/connexion.css"%></style>
 
 <div class="signup-form">
 <form method="post" action="<c:url value="/connexion" />">
