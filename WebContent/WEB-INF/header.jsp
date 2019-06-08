@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,6 @@
 
 <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 
-
-
-<meta charset="ISO-8859-1">
 <title>Moviewatch</title>
 </head>
 <body>
@@ -39,6 +37,8 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/accesrestreint/edituser"/>">edit profil</a>
         </li>
+        
+        
 
       <c:choose>
       	<c:when test="${sessionScope.currentUser.role.nomRole == 'Utilisateur' }">
@@ -65,8 +65,15 @@
           </li>
       	</c:when>
       </c:choose>
+      </ul >
+      <ul  class="navbar-nav">
+      <li class="nav-item">
+            <a href=" <c:url value="/accesrestreint/deconnexion"/>"><button class="btn btn-sm btn-danger"><i class="fa fa-sign-out"></i> </button></a>
+          </li>
+      
      </c:if>
 
     </ul>
   </div>
 </nav>
+

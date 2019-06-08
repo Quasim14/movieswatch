@@ -9,9 +9,8 @@
 
 
 
-<c:out value="Bienvenue ${sessionScope.currentUser.prenom }"></c:out><br>
+<h1 class="h1-responsive font-weight-bold text-center my-5"><c:out value="Bienvenue ${sessionScope.currentUser.prenom }"></c:out></h1><br>
 
-<a href=" <c:url value="/accesrestreint/deconnexion"/>">Se deconnecter</a>
 
 <div class="container">
 	

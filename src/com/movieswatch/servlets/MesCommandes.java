@@ -26,8 +26,8 @@ import com.movieswatch.query.EntityFinderImpl;
 public class MesCommandes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Utilisateur currentUser= new Utilisateur();
-
-
+       
+   
     public MesCommandes() {
         super();
         // TODO Auto-generated constructor stub
@@ -37,14 +37,14 @@ public class MesCommandes extends HttpServlet {
 		HttpSession session= request.getSession();
 		if(session.getAttribute("currentUser")!= null)
 			currentUser= (Utilisateur) session.getAttribute("currentUser");
-
+		
 		EntityFinderImpl<Commande> etic= new EntityFinderImpl<>();
 		Map param= new HashMap();
-
+		
 		param.put("id", currentUser.getIdUtilisateur());
 		param.put("status","paye");
 		List<Commande> commandes= etic.findByNamedQuery("Commande.getPanier", new Commande(), param);
-
+		
 		request.setAttribute("commandes", commandes);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/mescommandes.jsp").forward( request, response );
 	}

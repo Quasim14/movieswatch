@@ -1,9 +1,7 @@
   <!-- Section heading -->
   <h2 class="h1-responsive font-weight-bold text-center my-5">Vos Achats</h2>
   <!-- Section description -->
-  <p class="text-center dark-grey-text w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in
-    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
 <c:forEach var="film" items="${films}">
 
 <section class="my-5">

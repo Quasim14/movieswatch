@@ -17,7 +17,7 @@ import com.movieswatch.query.EntityFinderImpl;
 public class DetailsFilm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private EntityFinderImpl<Film> efif= new EntityFinderImpl<Film>();
-
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,13 +31,13 @@ public class DetailsFilm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idFilm= Integer.valueOf(request.getParameter("idfilm"));
-
+		
 		Film f= efif.findOne(new Film(), idFilm);
-
+		
 		request.setAttribute("film", f);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/detailsfilm.jsp").forward(request, response);
 	}
 
-
+	
 
 }
