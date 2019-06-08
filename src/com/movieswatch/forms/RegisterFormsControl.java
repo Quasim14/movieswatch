@@ -47,18 +47,21 @@ public class RegisterFormsControl {
 
 	    Map<String, String> parametre = new HashMap<String, String>();
 	    parametre.put("numero",codepostal);
+	    
 		role =  entityFinderImplRole.findOne(role, 1);
 		
-/*
-	    switch(pRole) {
-	    case "Utilisateur" : role =  entityFinderImplRole.findOne(role, 1);
-			break;
-	    case "Admin" : role =  entityFinderImplRole.findOne(role, 2);
-	    	break;
-	    case "Comptable" : role =  entityFinderImplRole.findOne(role, 3);
-			break;
-	    }
-*/
+		if(pRole != null) {
+		    switch(pRole) {
+		    case "Utilisateur" : role =  entityFinderImplRole.findOne(role, 1);
+				break;
+		    case "Admin" : role =  entityFinderImplRole.findOne(role, 2);
+		    	break;
+		    case "Comptable" : role =  entityFinderImplRole.findOne(role, 3);
+				break;
+		    }
+
+		}
+
 	    Codepostaux codePostal =entityFinderImplCodePostal.findOneByNamedQuery("Codepostaux.findByNumber", new Codepostaux(), parametre) ;
 	    Utilisateur utilisateur = new Utilisateur();
 	    utilisateur.setRole(role);
@@ -103,10 +106,10 @@ public class RegisterFormsControl {
 	    utilisateur.setNom( nom );
 
 	    if ( erreurs.isEmpty() ) {
-	        resultat = "Succï¿½s de l'inscription.";
+	        resultat = "Succés de l'inscription.";
 	        entityFinderImplUtilisateur.insert(utilisateur);
 	    } else {
-	        resultat = "ï¿½chec de l'inscription.";
+	        resultat = "échec de l'inscription.";
 	    }
 
 	    return utilisateur;
@@ -114,10 +117,18 @@ public class RegisterFormsControl {
 	}
 
 	private void validationEmail( String email ) throws Exception {
+		
 	    if ( email != null ) {
 	        if ( !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
 	            throw new Exception( "Merci de saisir une adresse mail valide." );
 	        }
+	        
+	        List<Utilisateur> users = entityFinderImplUtilisateur.findByNamedQuery("Utilisateur.findAll", new Utilisateur(), null);
+			for(Utilisateur u: users) {
+				if(email.equals(u.getEmail())) {
+					throw new Exception( "email deja existante" );
+				}
+			}
 	    } else {
 	        throw new Exception( "Merci de saisir une adresse mail." );
 	    }
@@ -126,9 +137,9 @@ public class RegisterFormsControl {
 	private void validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
 	    if ( motDePasse != null && confirmation != null ) {
 	        if ( !motDePasse.equals( confirmation ) ) {
-	            throw new Exception( "Les mots de passe entrï¿½s sont diffï¿½rents, merci de les saisir ï¿½ nouveau." );
+	            throw new Exception( "Les mots de passe entrés sont diffï¿½rents, merci de les saisir ï¿½ nouveau." );
 	        } else if ( motDePasse.length() < 3 ) {
-	            throw new Exception( "Les mots de passe doivent contenir au moins 3 caractï¿½res." );
+	            throw new Exception( "Les mots de passe doivent contenir au moins 3 caractéres." );
 	        }
 	    } else {
 	        throw new Exception( "Merci de saisir et confirmer votre mot de passe." );
@@ -137,7 +148,7 @@ public class RegisterFormsControl {
 
 	private void validationNom( String nom ) throws Exception {
 	    if ( nom != null && nom.length() < 3 ) {
-	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractï¿½res." );
+	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractéres." );
 	    }
 	}
 

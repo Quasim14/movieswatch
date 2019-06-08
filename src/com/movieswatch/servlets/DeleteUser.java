@@ -1,28 +1,32 @@
 package com.movieswatch.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.movieswatch.connection.EMF;
+import com.movieswatch.model.Commande;
+import com.movieswatch.model.CommandesFilm;
 import com.movieswatch.model.Utilisateur;
 import com.movieswatch.query.EntityFinderImpl;
 
 /**
- * Servlet implementation class MembersList
+ * Servlet implementation class DeleteUser
  */
-@WebServlet("/admin/membersList")
-public class MembersList extends HttpServlet {
+@WebServlet("/admin/deleteUser")
+public class DeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MembersList() {
+    public DeleteUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +35,24 @@ public class MembersList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int idUser= Integer.valueOf(request.getParameter("idutilisateur"));
+		EntityFinderImpl<Utilisateur> emfi = new EntityFinderImpl();
 		
-		EntityFinderImpl<Utilisateur> utilisateur = new EntityFinderImpl<>();
-		List<Utilisateur> listUtilisateur = utilisateur.findByNamedQuery("Utilisateur.findAll",new Utilisateur(), null);
-		request.setAttribute("listUtilisateur", listUtilisateur);
+		Utilisateur userToRemove = emfi.findOne(new Utilisateur(), idUser);
 		
+		EntityManager em= EMF.getEM();
+		try {
+			EntityTransaction transac= em.getTransaction();
+			transac.begin();
+			em.remove(em.merge(userToRemove));
+			transac.commit();
+		}
+		finally {
+			em.clear();
+			em.close();
+		}
 		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/membersList.jsp").forward( request, response );
-
+		response.sendRedirect(request.getContextPath()+"/admin/memberList");
 	}
 
 	/**

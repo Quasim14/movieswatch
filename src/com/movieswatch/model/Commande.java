@@ -2,6 +2,9 @@ package com.movieswatch.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
 import java.util.List;
 
 
@@ -13,6 +16,7 @@ import java.util.List;
 @Table(name="commandes")
 @NamedQueries({@NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c"),
 	@NamedQuery(name="Commande.getPanier", query="select c from Commande c where c.utilisateur.idUtilisateur = :id and c.status =:status")})
+@CascadeOnDelete
 public class Commande implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +39,8 @@ public class Commande implements Serializable {
 	private Facture facture;
 
 	//bi-directional many-to-one association to CommandesFilm
-	@OneToMany(mappedBy="commande")
+	@OneToMany(mappedBy="commande", orphanRemoval=true, cascade={CascadeType.ALL})
+	@CascadeOnDelete
 	private List<CommandesFilm> commandesFilms;
 
 	public Commande() {

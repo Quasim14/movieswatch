@@ -41,6 +41,15 @@
             <input type="password" class="form-control" name="confirmation" placeholder="Confirmer votre mot de passe" required="required">
         <span class="erreur">${form.erreurs['confirmation']}</span>
         </div>
+        <c:if test="${sessionScope.currentUser.role.nomRole == 'Admin' }">
+        <div  class="form-group">
+        <select name ="role">
+        	<option value="Admin">Administrateur</option>
+        	<option value="Utilisateur">Utilisateur</option>
+        	<option value="Comptable">Comptable</option>
+        </select>
+        </div>
+        </c:if>
 
 		<div class="form-group">
             <button type="submit" class="btn btn-primary btn-lg">Valider</button>       

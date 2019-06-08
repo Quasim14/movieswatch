@@ -56,12 +56,9 @@
         		<a class="nav-link" href="<c:url value="/admin/filmAdmin"/>">Ajout film</a>
       		</li>
 
-      		<li class="nav-item">
-        		<a class="nav-link" href="<c:url value="/admin/registerAdmin"/>">Ajouter un utilisateur</a>
-          </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/membersList"/>">membres</a>
+            <a class="nav-link" href="<c:url value="/admin/membersList"/>">membres</a>
           </li>
       	</c:when>
       </c:choose>

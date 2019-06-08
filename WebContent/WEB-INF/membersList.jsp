@@ -33,8 +33,10 @@
 
 
 						<td>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a href="<c:url value="/admin/deleteUser">
+		<c:param name="idutilisateur" value="${user.idUtilisateur}"/>
+		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i>
+                             </a>
 						</td>
                     </tr>
 					<tr>
@@ -45,7 +47,7 @@
                 
             </table>
            <div class="col-sm-7">
-				<a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un utilisateur</span></a>				
+				<a href="<c:url value="/registerForms"/>" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un utilisateur</span></a>				
 			</div>
 			<br>
        		<div class="col-sm-5">
@@ -73,8 +75,9 @@
 
 
 						<td>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a href="<c:url value="/admin/deleteUser">
+		<c:param name="idutilisateur" value="${user.idUtilisateur}"/>
+		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
 						</td>
                     </tr>
 					<tr>
