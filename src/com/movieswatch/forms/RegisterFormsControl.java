@@ -137,7 +137,7 @@ public class RegisterFormsControl {
 	private void validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
 	    if ( motDePasse != null && confirmation != null ) {
 	        if ( !motDePasse.equals( confirmation ) ) {
-	            throw new Exception( "Les mots de passe entrés sont diffï¿½rents, merci de les saisir ï¿½ nouveau." );
+	            throw new Exception( "Les mots de passe entrés sont différents, merci de les saisir ï¿½ nouveau." );
 	        } else if ( motDePasse.length() < 3 ) {
 	            throw new Exception( "Les mots de passe doivent contenir au moins 3 caractéres." );
 	        }

@@ -3,11 +3,11 @@
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
-      <include-prelude>/WEB-INF/header.jsp</include-prelude>
+      <include-prelude>/WEB-INF/inc/header.jsp</include-prelude>
     </jsp-property-group>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
-      <include-coda>/WEB-INF/footer.jsp</include-coda>
+      <include-coda>/WEB-INF/inc/footer.jsp</include-coda>
     </jsp-property-group>
   </jsp-config>
   <filter>

@@ -54,12 +54,12 @@ public class Utilisateur implements Serializable {
 	private String prenom;
 
 	//bi-directional many-to-one association to Commande
-	@OneToMany(mappedBy="utilisateur",  orphanRemoval=true, cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="utilisateur")
 	@CascadeOnDelete
 	private List<Commande> commandes;
 
 	//bi-directional many-to-one association to Document
-	@OneToMany(mappedBy="utilisateur", orphanRemoval=true, cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="utilisateur")
 	@CascadeOnDelete
 	private List<Document> documents;
 
