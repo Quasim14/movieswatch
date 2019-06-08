@@ -15,7 +15,7 @@
 
       <!-- Featured image -->
       <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
-        <img class="img-fluid" src="${pageContext.request.contextPath}${film.urlAffiche}"alt="${film.titreOriginal }">
+        <img class="img-fluid" src="${pageContext.request.contextPath}/inc/images/movies/${film.urlAffiche}"alt="${film.titreOriginal }">
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>
