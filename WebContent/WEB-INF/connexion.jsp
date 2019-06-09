@@ -1,5 +1,3 @@
-<link href="${pageContext.request.contextPath}/inc/css/connexion.css" rel="stylesheet">
-
 
 <div class="signup-form">
 <form method="post" action="<c:url value="/connexion" />">
@@ -21,9 +19,7 @@
 	</fieldset>
 </form>
 </div>
-<p>${sessionScope.currentUser.role}</p>
-<p>ID UTILISATEUR</p>
-<p>${sessionScope.currentUser.idUtilisateur}</p>
+
 
 
 
