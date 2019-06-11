@@ -15,7 +15,7 @@ import com.movieswatch.query.EntityFinderImpl;
 /**
  * Servlet implementation class FilmListe
  */
-@WebServlet("/admin/filmList")
+@WebServlet("/accesrestreint/filmList")
 public class FilmList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

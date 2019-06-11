@@ -1,11 +1,11 @@
 <div class="view" style="background-image: url('./inc/images/background/backgroundConnectionPage.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">  
 	<h6 class=" display-3 font-weight-bold white-text mt-5 pt-5"></h6>
-	<hr class="hr-light my-4 w-75">		
+	
 	<div class="signup-form">
 	    <form method="post" action="<c:url value="/registerForms" />">
 			<h2>Inscription</h2>
 	        <div class="form-group">
-	        	<input type="text" class="form-control" name="nom" value="<c:out value="${utilisateur.nom}"/>" placeholder="Nom" required="required">
+	        	<input id="form1" type="text" class="form-control" name="nom" value="<c:out value="${utilisateur.nom}"/>" placeholder="Nom" required="required">
 	        	<span class="erreur">${form.erreurs['nom']}</span>
 	        </div>
 	        <div class="form-group">
@@ -42,7 +42,8 @@
 	        </div>
 	        <c:if test="${sessionScope.currentUser.role.nomRole == 'Admin' }">
 		        <div  class="form-group">
-			        <select name ="role">
+			        <select class="browser-default custom-select" name ="role">
+			        	<option selected>Choisir lun rôle...</option>
 			        	<option value="Admin">Administrateur</option>
 			        	<option value="Utilisateur">Utilisateur</option>
 			        	<option value="Comptable">Comptable</option>
