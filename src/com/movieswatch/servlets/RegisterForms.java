@@ -6,9 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.movieswatch.forms.RegisterFormsControl;
 import com.movieswatch.model.Utilisateur;
+/**
+ * 
+ * @author Quasim Bita
+ * 
+ */
 
 /**
  * Servlet implementation class RegisterForms
@@ -31,7 +35,6 @@ public class RegisterForms extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
 		this.getServletContext().getRequestDispatcher("/WEB-INF/registerForms.jsp").forward(request, response);
 	}
 
@@ -41,14 +44,11 @@ public class RegisterForms extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		RegisterFormsControl forms = new RegisterFormsControl();
-
-		utilisateur= forms.inscrireUtilisateur(request);
+		utilisateur= forms.createNewUser(request);
 
 		request.setAttribute("utilisateur",utilisateur);
-
 		if(forms.getErreurs().isEmpty()) {
 			response.sendRedirect(request.getContextPath() + "/connexion");
-
 		}else {
 			request.setAttribute("form", forms);
 			doGet(request,response);

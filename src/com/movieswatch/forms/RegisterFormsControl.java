@@ -14,15 +14,19 @@ import com.movieswatch.model.Codepostaux;
 import com.movieswatch.model.Role;
 import com.movieswatch.model.Utilisateur;
 import com.movieswatch.query.EntityFinderImpl;
-
+import com.movieswatch.service.FormService;
+/**
+ * 
+ * @author Quasim Bita
+ * 
+ */
 public class RegisterFormsControl {
+	FormService formService = new FormService();
 	EntityFinderImpl<Codepostaux> entityFinderImplCodePostal = new EntityFinderImpl<>();
-	EntityFinderImpl<Utilisateur> entityFinderImplUtilisateur = new EntityFinderImpl<>();
 	EntityFinderImpl<Role> entityFinderImplRole = new EntityFinderImpl<>();
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
-	private static Codepostaux codePostal = new Codepostaux();
 	private static Role role= new Role();
 
 	public String getResultat() {
@@ -32,24 +36,46 @@ public class RegisterFormsControl {
 	public Map<String, String> getErreurs() {
 	    return erreurs;
 	}
-
-	public Utilisateur inscrireUtilisateur( HttpServletRequest request ) {
-		String nom =request.getParameter("nom");
-		String prenom =request.getParameter("prenom");
-		String adresseRue =request.getParameter("adresseRue");
-		String codepostal =request.getParameter("codepostal");
-		String telephone =request.getParameter("telephone");
-		String datenaissance =request.getParameter("datenaissance");
+/*
+ * Cette méthode Permet la création d'un utilisateur
+ */
+	public Utilisateur createNewUser( HttpServletRequest request ) {
+		Utilisateur user = new Utilisateur();
+		Map<String, String> mapPostalCode = new HashMap<String, String>();
+		
+		//Recupération des donnée du formulaire d'inscription (registerForms.jsp)		
+		String lastName =request.getParameter("nom");
+		String firstName =request.getParameter("prenom");
+		String adress =request.getParameter("adresseRue");
+		String postalCode =request.getParameter("codepostal");
+		mapPostalCode.put("numero",postalCode);
+		String mobile =request.getParameter("telephone");
+		String birthDate =request.getParameter("datenaissance");
+		LocalDate localDatebirthDate = LocalDate.parse(birthDate);
 	    String email = request.getParameter("email");
-	    String motdepasse = request.getParameter("motdepasse");
+	    String password = request.getParameter("motdepasse");
 	    String confirmation = request.getParameter("confirmation");
 	    String pRole = request.getParameter("role");
-
-	    Map<String, String> parametre = new HashMap<String, String>();
-	    parametre.put("numero",codepostal);
 	    
+	
+	    //Création de l'utilisateur	    
+	          
+	    /*
+	     * POUR L'UTILISATEUR
+	     * Lors de l'inscription fais par un simple utilisateur,
+	     *  le role de l'utilisateur est initialiser à 1.
+	     * Il y a trois role définis en Base de donnée
+	     * 1 = Utilisateur
+	     * 2 = Admin
+	     * 3 = Comptable 
+	     */  
 		role =  entityFinderImplRole.findOne(role, 1);
 		
+		/*
+		 * POUR L'ADMINISTRATEUR
+		 * Permet d'afficher le choix de role d'un utilisateur, 
+		 * lors de l'inscription réalisée par un administrateur.
+		 */
 		if(pRole != null) {
 		    switch(pRole) {
 		    case "Utilisateur" : role =  entityFinderImplRole.findOne(role, 1);
@@ -59,99 +85,54 @@ public class RegisterFormsControl {
 		    case "Comptable" : role =  entityFinderImplRole.findOne(role, 3);
 				break;
 		    }
-
 		}
+		Codepostaux postalCodes =entityFinderImplCodePostal.findOneByNamedQuery("Codepostaux.findByNumber", new Codepostaux(), mapPostalCode) ;	
+		user.setRole(role);
+		user.setNumMobile(mobile);
+		user.setDateNaissance(Date.valueOf(localDatebirthDate));
+		user.setUtilisateur(null);
+		user.setPrenom(firstName);
+		user.setADrue(adress);
 
-	    Codepostaux codePostal =entityFinderImplCodePostal.findOneByNamedQuery("Codepostaux.findByNumber", new Codepostaux(), parametre) ;
-	    Utilisateur utilisateur = new Utilisateur();
-	    utilisateur.setRole(role);
-	    //Faire methode de controle
-	    utilisateur.setNumMobile(telephone);
-
-	    LocalDate datenaiss = LocalDate.parse(datenaissance);
-	    utilisateur.setDateNaissance(Date.valueOf(datenaiss));
-	    utilisateur.setUtilisateur(null);
-
-	    utilisateur.setPrenom(prenom);
-	    utilisateur.setADrue(adresseRue);
-
-
-	    if(codePostal != null) {
-		    utilisateur.setCodepostaux(codePostal);
+	    // Control des données requise pour la base de donnée.
+	    try {
+	    	formService.validationEntry(lastName);
+	    } catch ( Exception e ) {
+	    	erreurs.put("nom",e.getMessage());
+	    }
+	    user.setNom( lastName );
+	    
+	    
+	    if(postalCode != null) {
+	    	user.setCodepostaux(postalCodes);
 
 	    }else {
 	    	erreurs.put("codepostal", "Erreur code postal");
 	    }
 
-
 	    try {
-	        validationEmail( email );
+	        formService.validationEmail( email , "Utilisateur.findAll" );
 	    } catch ( Exception e ) {
 	        erreurs.put("email",e.getMessage());
 	    }
-	    utilisateur.setEmail( email );
-
+	    user.setEmail( email );
+	    
 	    try {
-	        validationMotsDePasse( motdepasse, confirmation );
+	    	formService.validationPassword( password, confirmation );
 	    } catch ( Exception e ) {
 	    	erreurs.put("motdepasse",e.getMessage());
 	    }
-	    utilisateur.setPasswd(motdepasse);
-
-	    try {
-	        validationNom( nom );
-	    } catch ( Exception e ) {
-	    	erreurs.put("nom",e.getMessage());
-	    }
-	    utilisateur.setNom( nom );
+	    user.setPasswd(password);
 
 	    if ( erreurs.isEmpty() ) {
 	        resultat = "Succés de l'inscription.";
-	        entityFinderImplUtilisateur.insert(utilisateur);
+	        formService.getEntityFinderImplUser().insert(user);
 	    } else {
 	        resultat = "échec de l'inscription.";
 	    }
 
-	    return utilisateur;
-
+	    return user;
 	}
-
-	private void validationEmail( String email ) throws Exception {
-		
-	    if ( email != null ) {
-	        if ( !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
-	            throw new Exception( "Merci de saisir une adresse mail valide." );
-	        }
-	        
-	        List<Utilisateur> users = entityFinderImplUtilisateur.findByNamedQuery("Utilisateur.findAll", new Utilisateur(), null);
-			for(Utilisateur u: users) {
-				if(email.equals(u.getEmail())) {
-					throw new Exception( "email deja existante" );
-				}
-			}
-	    } else {
-	        throw new Exception( "Merci de saisir une adresse mail." );
-	    }
-	}
-
-	private void validationMotsDePasse( String motDePasse, String confirmation ) throws Exception {
-	    if ( motDePasse != null && confirmation != null ) {
-	        if ( !motDePasse.equals( confirmation ) ) {
-	            throw new Exception( "Les mots de passe entrés sont différents, merci de les saisir ï¿½ nouveau." );
-	        } else if ( motDePasse.length() < 3 ) {
-	            throw new Exception( "Les mots de passe doivent contenir au moins 3 caractéres." );
-	        }
-	    } else {
-	        throw new Exception( "Merci de saisir et confirmer votre mot de passe." );
-	    }
-	}
-
-	private void validationNom( String nom ) throws Exception {
-	    if ( nom != null && nom.length() < 3 ) {
-	        throw new Exception( "Le nom d'utilisateur doit contenir au moins 3 caractéres." );
-	    }
-	}
-
 
 
 }

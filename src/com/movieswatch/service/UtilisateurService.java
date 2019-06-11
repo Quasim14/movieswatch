@@ -18,17 +18,14 @@ public class UtilisateurService {
 	public static List<Utilisateur> getUtilistateurs(){
 
 		return EMF.getEM().createNamedQuery("Utilisateur.findAll", Utilisateur.class)
-				.getResultList();
-	
+				.getResultList();	
 	}
 	
 	public static Utilisateur findByEmail(String email){
 		
-
 		return EMF.getEM().createNamedQuery("Utilisateur.findByEmail", Utilisateur.class)
 				.setParameter("email", email)
-				.getSingleResult();
-		
+				.getSingleResult();		
 	}
 	
 	
@@ -54,26 +51,22 @@ public class UtilisateurService {
 		Utilisateur utilisateur = em.find(Utilisateur.class, id);
 		CommandeService.removeAll(utilisateur.getCommandes());
 		remove(utilisateur);
-
 	}
 	
-
-	
-	
-public static void remove(Object  obj) {
-		
-		EntityManager em = EMF.getEM();
-		
-		try {		
-		EntityTransaction transac= em.getTransaction();
-		transac.begin();
-		em.remove(em.merge(obj));
-		transac.commit();
+	public static void remove(Object  obj) {
+			
+			EntityManager em = EMF.getEM();
+			
+			try {		
+			EntityTransaction transac= em.getTransaction();
+			transac.begin();
+			em.remove(em.merge(obj));
+			transac.commit();
+			}
+			finally {
+				em.clear();
+				em.close();
+			}
 		}
-		finally {
-			em.clear();
-			em.close();
-		}
+		
 	}
-	
-}
