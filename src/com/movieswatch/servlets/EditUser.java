@@ -40,7 +40,7 @@ public class EditUser extends HttpServlet {
 		EditProfile editProfile = new EditProfile ();
 		Utilisateur utilisateur = new Utilisateur();
 
-		utilisateur= editProfile.mergeUtilisateur(request);
+		utilisateur= editProfile.editUser(request);
 
 		request.setAttribute("utilisateur",utilisateur);
 

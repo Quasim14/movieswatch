@@ -58,7 +58,7 @@ public class RegisterFormsModel {
 	    String pRole = request.getParameter("role");
 	    
 	
-	    //Création de l'utilisateur	    
+	    //Initialisation des valeurs de l'utilisateur	    
 	          
 	    /*
 	     * POUR L'UTILISATEUR

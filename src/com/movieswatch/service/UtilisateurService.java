@@ -4,13 +4,19 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
 import com.movieswatch.connection.EMF;
 import com.movieswatch.model.Utilisateur;
-import com.movieswatch.query.EntityFinderImpl;
+
+/**
+ * 
+ * @author Quasim Bita
+ * 
+ */
 
 /*
- fonction statique evite de devoir instancier a chaque fois pour appeler la fonction */
+ * fonction statique evite de devoir instancier à chaque fois pour appeler la fonction
+ * 
+ *  */
 
 public class UtilisateurService {
 	
@@ -28,7 +34,10 @@ public class UtilisateurService {
 				.getSingleResult();		
 	}
 	
-	
+	/*
+	 * fonction statique evite de devoir instancier à chaque fois pour appeler la fonction
+	 * 
+	 *  */	
 	public static void remove(int id) {
 		/*
 		EntityManager em = EMF.getEM();
@@ -46,8 +55,7 @@ public class UtilisateurService {
 			em.close();
 		}*/
 		
-		EntityManager em = EMF.getEM();
-			
+		EntityManager em = EMF.getEM();		
 		Utilisateur utilisateur = em.find(Utilisateur.class, id);
 		CommandeService.removeAll(utilisateur.getCommandes());
 		remove(utilisateur);
