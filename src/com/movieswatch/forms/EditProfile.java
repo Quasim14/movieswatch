@@ -14,7 +14,7 @@ import com.movieswatch.model.Utilisateur;
 import com.movieswatch.query.EntityFinderImpl;
 
 public class EditProfile {
-	private static Logger log = Logger.getLogger(RegisterFormsControl.class);
+	private static Logger log = Logger.getLogger(RegisterFormsModel.class);
 
 	EntityFinderImpl<Codepostaux> entityFinderImplCodePostal = new EntityFinderImpl<>();
 	EntityFinderImpl<Utilisateur> entityFinderImplUtilisateur = new EntityFinderImpl<>();

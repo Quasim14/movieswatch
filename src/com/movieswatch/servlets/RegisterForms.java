@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.movieswatch.forms.RegisterFormsControl;
+import com.movieswatch.forms.RegisterFormsModel;
 import com.movieswatch.model.Utilisateur;
 /**
  * 
@@ -43,7 +43,7 @@ public class RegisterForms extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RegisterFormsControl forms = new RegisterFormsControl();
+		RegisterFormsModel forms = new RegisterFormsModel();
 		utilisateur= forms.createNewUser(request);
 
 		request.setAttribute("utilisateur",utilisateur);

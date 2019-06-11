@@ -20,7 +20,7 @@ import com.movieswatch.service.FormService;
  * @author Quasim Bita
  * 
  */
-public class RegisterFormsControl {
+public class RegisterFormsModel {
 	FormService formService = new FormService();
 	EntityFinderImpl<Codepostaux> entityFinderImplCodePostal = new EntityFinderImpl<>();
 	EntityFinderImpl<Role> entityFinderImplRole = new EntityFinderImpl<>();
