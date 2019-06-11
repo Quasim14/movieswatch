@@ -10,7 +10,7 @@ import com.movieswatch.model.Utilisateur;
 import com.movieswatch.query.EntityFinderImpl;
 import com.movieswatch.service.FormService;
 
-public class EditProfile {
+public class EditProfileModel {
 	private static Logger log = Logger.getLogger(RegisterFormsModel.class);
 	FormService formService = new FormService();
 	EntityFinderImpl<Codepostaux> entityFinderImplCodePostal = new EntityFinderImpl<>();
