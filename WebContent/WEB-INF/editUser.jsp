@@ -1,14 +1,8 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-<!------ Include the above in your HEAD tag ---------->
-
-<div class="container" style="padding-top: 60px;">
-  <h1 class="page-header">Edit Profile</h1>
+<h3 class="display-3 font-weight-bold mt-5 pt-5 text-dark">Edition profil</h3>
+<hr class="hr-light my-4 w-75">
+<div class="container">
   <div class="row">
-
     <!-- edit form column -->
-
-
       <form class="form-horizontal" role="form" method="post" action="edituser">
         <div class="form-group">
          <label class="col-lg-3 control-label">id:</label>

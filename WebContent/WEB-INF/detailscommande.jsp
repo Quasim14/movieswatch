@@ -1,5 +1,5 @@
   <!-- Section heading -->
-  <h2 class="h1-responsive font-weight-bold text-center my-5">Vos Achats</h2>
+  <h2 class="h1-responsive font-weight-bold text-center mt-5 pt-5text-dark">Vos Achats</h2>
   <!-- Section description -->
 
 <c:forEach var="film" items="${films}">
@@ -47,4 +47,4 @@
 </section>
 
 </c:forEach>
-</p>
+

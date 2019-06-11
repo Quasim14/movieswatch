@@ -3,8 +3,6 @@ package com.movieswatch.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import org.eclipse.persistence.annotations.CascadeOnDelete;
-
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +18,6 @@ import java.util.List;
 	@NamedQuery(name="Utilisateur.findById", query="SELECT u FROM Utilisateur u WHERE u.idUtilisateur = :id"),
 	@NamedQuery(name="Utilisateur.findByEmail", query="SELECT u FROM Utilisateur u WHERE u.email = :email"),
 	@NamedQuery(name="Utilisateur.connexion", query="SELECT u FROM Utilisateur u where u.email = :email and u.passwd = :password ")})
-
-@CascadeOnDelete
 public class Utilisateur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -55,12 +51,10 @@ public class Utilisateur implements Serializable {
 
 	//bi-directional many-to-one association to Commande
 	@OneToMany(mappedBy="utilisateur")
-	@CascadeOnDelete
 	private List<Commande> commandes;
 
 	//bi-directional many-to-one association to Document
 	@OneToMany(mappedBy="utilisateur")
-	@CascadeOnDelete
 	private List<Document> documents;
 
 	//bi-directional many-to-one association to FilmsUtilisateur

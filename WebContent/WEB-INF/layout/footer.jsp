@@ -1,10 +1,17 @@
-
+<c:choose>
+<c:when test="${empty sessionScope.currentUser}">
+<footer class="op navbar-fixed-bottom">
+</c:when>
+<c:when test="${!empty sessionScope.currentUser}">
+<footer class="op navbar-fixed-bottom">
+</c:when>
+</c:choose>
 
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
+
 
   <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
+  <div class="text-center text-md-left">
 
 
   <!-- Footer Links -->

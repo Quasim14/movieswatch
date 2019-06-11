@@ -1,4 +1,4 @@
-<h1 class="h1-responsive font-weight-bold text-center my-5">Panier</h1>
+<h1 class="h1-responsive font-weight-bold text-center mt-5 pt-5 text-dark">Panier</h1>
 <div class="container mb-4">
     <div class="row">
         <div class="col-12">

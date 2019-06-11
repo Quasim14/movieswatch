@@ -1,15 +1,12 @@
+<h3 class="display-3 font-weight-bold  mt-5 pt-5 text-dark">Liste des membres</h3>
+<hr class="hr-light my-4 w-75">
+
 <div class="container">
         <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-5">
-						<h2>User <b>Management</b></h2>
-					</div>
-                </div>
-            </div>
+
             
         <div class="col-sm-5">
-			<h2>Liste administrateur</h2>
+			<h2>Administrateur</h2>
 		</div>            
             <table class="table table-striped table-hover">
                 <thead>
@@ -50,8 +47,9 @@
 				<a href="<c:url value="/registerForms"/>" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un utilisateur</span></a>				
 			</div>
 			<br>
+			<hr class="hr-light my-4 w-75">
        		<div class="col-sm-5">
-				<h2>Liste Utilisateur</h2>
+				<h2>Utilisateur</h2>
 			</div>
                  <table class="table table-striped table-hover">
                 <thead>

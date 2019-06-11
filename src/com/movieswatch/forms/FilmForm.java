@@ -31,7 +31,6 @@ public class FilmForm {
 	public Film setFilm(HttpServletRequest request){
 
 		film.setTitreOriginal(request.getParameter("titre"));
-
 		film.setBudget(request.getParameter("budget"));
 		film.setAnneeProduction(request.getParameter("anneeProduction"));
 		film.setSynopsis(request.getParameter("synopsis"));

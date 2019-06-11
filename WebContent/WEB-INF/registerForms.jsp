@@ -1,5 +1,13 @@
+ <style>
+.op{
+  background-color: rgb(66, 134, 244,0.2);
+}
+</style>
+ <div class="view" style="background-image: url('./inc/images/background/backgroundConnectionPage.png'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  
 
-<link href="${pageContext.request.contextPath}/inc/css/connexion.css" rel="stylesheet">
+<h6 class="display-3 font-weight-bold white-text mt-5 pt-5"></h6>
+<hr class="hr-light my-4 w-75">
 
 
 <div class="signup-form">
@@ -22,7 +30,7 @@
         <span class="erreur">${form.erreurs['codepostal']}</span>
         </div>
         <div class="form-group">
-        	<input type="text" class="form-control" name="telephone" value="<c:out value="${utilisateur.numMobile}"/>" placeholder="Numï¿½ro de tï¿½lï¿½phone">
+        	<input type="text" class="form-control" name="telephone" value="<c:out value="${utilisateur.numMobile}"/>" placeholder="Numéro de téléphone">
         <span class="erreur">${form.erreurs['adresseRue']}</span>
         </div>
         <div class="form-group">
@@ -58,3 +66,5 @@
 	<div class="text-center">Already have an account? <a href="<c:url value="/connexion"/>">Se connecter</a></div>
 	<p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
 </div>
+</div>
+<hr class="hr-light my-4 w-75">

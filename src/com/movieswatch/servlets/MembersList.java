@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.movieswatch.connection.EMF;
 import com.movieswatch.model.Utilisateur;
 import com.movieswatch.query.EntityFinderImpl;
+import com.movieswatch.service.UtilisateurService;
 
 /**
  * Servlet implementation class MembersList
@@ -33,8 +35,11 @@ public class MembersList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		EntityFinderImpl<Utilisateur> utilisateur = new EntityFinderImpl<>();
-		List<Utilisateur> listUtilisateur = utilisateur.findByNamedQuery("Utilisateur.findAll",new Utilisateur(), null);
+		//EntityFinderImpl<Utilisateur> utilisateur = new EntityFinderImpl<>();
+		//List<Utilisateur> listUtilisateur = utilisateur.findByNamedQuery("Utilisateur.findAll",new Utilisateur(), null);
+		
+
+		List<Utilisateur> listUtilisateur = UtilisateurService.getUtilistateurs();
 		request.setAttribute("listUtilisateur", listUtilisateur);
 		
 		

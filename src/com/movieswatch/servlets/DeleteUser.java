@@ -15,6 +15,7 @@ import com.movieswatch.model.Commande;
 import com.movieswatch.model.CommandesFilm;
 import com.movieswatch.model.Utilisateur;
 import com.movieswatch.query.EntityFinderImpl;
+import com.movieswatch.service.UtilisateurService;
 
 /**
  * Servlet implementation class DeleteUser
@@ -36,7 +37,9 @@ public class DeleteUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idUser= Integer.valueOf(request.getParameter("idutilisateur"));
-		EntityFinderImpl<Utilisateur> emfi = new EntityFinderImpl();
+		
+		UtilisateurService.remove(idUser);
+	/*	EntityFinderImpl<Utilisateur> emfi = new EntityFinderImpl();
 		
 		Utilisateur userToRemove = emfi.findOne(new Utilisateur(), idUser);
 		
@@ -50,9 +53,11 @@ public class DeleteUser extends HttpServlet {
 		finally {
 			em.clear();
 			em.close();
-		}
+		}*/
 		
-		response.sendRedirect(request.getContextPath()+"/admin/memberList");
+		
+		
+		response.sendRedirect(request.getContextPath()+"/admin/membersList");
 	}
 
 	/**

@@ -1,7 +1,5 @@
-
-
-
-
+<h3 class="display-3 font-weight-bold white-text mt-5 pt-5 text-dark">Ajout de films</h3>
+  <hr class="hr-light my-4 w-75">
 <form method="POST"  action="<c:url value="/admin/filmAdmin" />">
 
 <div class="row">
@@ -22,7 +20,7 @@
 		</div>
 
 		<div class="form-group">
-		 <label class="col-lg-3 control-label">Annï¿½e production:</label>
+		 <label class="col-lg-3 control-label">Année production:</label>
 		 <div class="col-lg-8">
 		   <input name="anneeProduction"  class="form-control" type="date"></input>
 		 </div>
@@ -56,7 +54,7 @@
 			 </div>
 			</div>
 			<div class="form-group">
-			 <label class="col-lg-3 control-label">Numï¿½ro isan:</label>
+			 <label class="col-lg-3 control-label">Numéro isan:</label>
 			 <div class="col-lg-8">
 			   <input name="isan"  class="form-control" type="text"></input>
 			 </div>
