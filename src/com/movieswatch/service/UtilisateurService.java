@@ -17,8 +17,8 @@ import com.movieswatch.model.Utilisateur;
  * 
  */
 
-/*
- * fonction statique evite de devoir instancier à chaque fois pour appeler la fonction
+/**
+ * fonction statique evite de devoir instancier ï¿½ chaque fois pour appeler la fonction
  * 
  *  */
 
@@ -38,54 +38,19 @@ public class UtilisateurService {
 				.getSingleResult();		
 	}
 	
-	/*
-	 * fonction statique evite de devoir instancier à chaque fois pour appeler la fonction
+	/**
+	 * fonction statique evite de devoir instancier a chaque fois pour appeler la fonction
 	 * 
 	 *  */	
 	public static void remove(Utilisateur utilisateur) {
-		List<CommandesFilm> commandfilms= new ArrayList<>();
-		List<Commande> cmds= new ArrayList<>();
-		Facture facture = null;
-		
-		
-		for(Commande commande : utilisateur.getCommandes()) {
-			
-			for(CommandesFilm cmdFilm : commande.getCommandesFilms()) {
-				commandfilms.add(cmdFilm);
-				}
-			
-			facture  = commande.getFacture();
-			
 
-			cmds.add(commande);
-		}
-		
-		
 		EntityManager em = EMF.getEM();
 		EntityTransaction transac= em.getTransaction();
 		
-		try {		
-			
-			transac.begin();
-
-			for(CommandesFilm cmdfilm: commandfilms) {
-				em.remove(em.merge(cmdfilm));
-			}
-			
-			for(Commande commande: cmds) {
-				Commande cmd= em.find(Commande.class, commande.getIdCommande());
-				if(cmd!=null)
-					em.remove(em.merge(cmd));
-			}
-			if(facture!=null) {
-				Facture factur= em.find(Facture.class, facture.getIdFacture());
-				if(factur!=null)
-					em.remove(factur);
-			}
-			
-			Utilisateur user = em.find(Utilisateur.class, utilisateur.getIdUtilisateur());
-			if(user!=null)
-				em.remove(em.merge(user));			
+		try {					
+			transac.begin();			
+			if(utilisateur!=null)
+				em.remove(em.merge(utilisateur));
 			transac.commit();
 		}
 		finally {

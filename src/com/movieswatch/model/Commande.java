@@ -36,7 +36,7 @@ public class Commande implements Serializable {
 	private Facture facture;
 
 	//bi-directional many-to-one association to CommandesFilm
-	@OneToMany(mappedBy="commande")
+	@OneToMany(mappedBy="commande", cascade=CascadeType.REMOVE)
 	private List<CommandesFilm> commandesFilms;
 
 	public Commande() {

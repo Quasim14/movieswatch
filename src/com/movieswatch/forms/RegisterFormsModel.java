@@ -40,13 +40,13 @@ public class RegisterFormsModel {
 	    return erreurs;
 	}
 /*
- * Cette méthode Permet la création d'un utilisateur
+ * Cette mï¿½thode Permet la crï¿½ation d'un utilisateur
  */
 	public Utilisateur createNewUser( HttpServletRequest request ) {
 		Utilisateur user = new Utilisateur();
 		Map<String, String> mapPostalCode = new HashMap<String, String>();
 		
-		//Recupération des donnée du formulaire d'inscription (registerForms.jsp)		
+		//Recupï¿½ration des donnï¿½e du formulaire d'inscription (registerForms.jsp)		
 		String lastName =request.getParameter("nom");
 		String firstName =request.getParameter("prenom");
 		String adress =request.getParameter("adresseRue");
@@ -66,8 +66,8 @@ public class RegisterFormsModel {
 	    /*
 	     * POUR L'UTILISATEUR
 	     * Lors de l'inscription fais par un simple utilisateur,
-	     *  le role de l'utilisateur est initialiser à 1.
-	     * Il y a trois role définis en Base de donnée
+	     *  le role de l'utilisateur est initialiser ï¿½ 1.
+	     * Il y a trois role dï¿½finis en Base de donnï¿½e
 	     * 1 = Utilisateur
 	     * 2 = Admin
 	     * 3 = Comptable 
@@ -77,7 +77,7 @@ public class RegisterFormsModel {
 		/*
 		 * POUR L'ADMINISTRATEUR
 		 * Permet d'afficher le choix de role d'un utilisateur, 
-		 * lors de l'inscription réalisée par un administrateur.
+		 * lors de l'inscription rï¿½alisï¿½e par un administrateur.
 		 */
 		if(pRole != null) {
 		    switch(pRole) {
@@ -97,7 +97,7 @@ public class RegisterFormsModel {
 		user.setPrenom(firstName);
 		user.setADrue(adress);
 
-	    // Control des données requise pour la base de donnée.
+	    // Control des donnï¿½es requise pour la base de donnï¿½e.
 	    try {
 	    	formService.validationEntry(lastName);
 	    } catch ( Exception e ) {
@@ -128,7 +128,7 @@ public class RegisterFormsModel {
 	    user.setPasswd(password);
 
 	    if ( erreurs.isEmpty() ) {
-	        resultat = "Succés de l'inscription.";
+	        resultat = "Succï¿½s de l'inscription.";
 	        
 	        EntityManager em= EMF.getEM();
 			EntityTransaction transac= em.getTransaction();
@@ -144,7 +144,7 @@ public class RegisterFormsModel {
 				em.close();
 			}
 	    } else {
-	        resultat = "échec de l'inscription.";
+	        resultat = "echec de l'inscription.";
 	    }
 
 	    return user;
