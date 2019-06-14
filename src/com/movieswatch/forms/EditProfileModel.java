@@ -2,8 +2,13 @@ package com.movieswatch.forms;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+
+import com.movieswatch.connection.EMF;
 import com.movieswatch.model.Codepostaux;
 import com.movieswatch.model.Role;
 import com.movieswatch.model.Utilisateur;
@@ -72,11 +77,26 @@ public class EditProfileModel {
 
 	    if ( erreurs.isEmpty() ) {
 	        resultat = "Succes de l'inscription.";
-	        entityFinderImplUser.edit(user,result);
-	    } else {
+	        EntityManager em = EMF.getEM();
+			EntityTransaction transac= em.getTransaction();
+
+			try {
+				transac.begin();
+				em.merge(user);
+				
+				transac.commit();
+			}
+			finally {
+				if(transac.isActive())
+					transac.rollback();
+				em.clear();
+				em.close();
+			}	    
+			} else {
 	    	log.debug("Une erreur c'est produite lors de la validation");
 	        resultat = "echec de l'inscription.";
 	    }
+	    
 	    return user;
 	}
 }

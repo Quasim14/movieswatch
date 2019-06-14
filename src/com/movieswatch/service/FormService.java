@@ -76,16 +76,4 @@ public class FormService {
 	    }
 	}
 
-	
-	//Getter et Setter
-	public EntityFinderImpl<Utilisateur> getEntityFinderImplUser() {
-		return entityFinderImplUser;
-	}
-
-	public void setEntityFinderImplUser(EntityFinderImpl<Utilisateur> entityFinderImplUser) {
-		this.entityFinderImplUser = entityFinderImplUser;
-	}
-	
-	
-
 }

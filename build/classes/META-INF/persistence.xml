@@ -4,9 +4,6 @@
 
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>java:comp/env/jdbc/TestDB</jta-data-source>
-		<class>com.movieswatch.model.Abonnement</class>
-		<class>com.movieswatch.model.AbonnementsCommande</class>
-		<class>com.movieswatch.model.CartesBancaire</class>
 		<class>com.movieswatch.model.Codepostaux</class>
 		<class>com.movieswatch.model.Commande</class>
 		<class>com.movieswatch.model.CommandesFilm</class>

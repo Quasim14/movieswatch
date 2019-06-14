@@ -28,9 +28,9 @@
                         <td>${film.titreOriginal}</td>
                         <td>${film.anneeProduction}</td>
 						<td>
-                            <a href="<c:url value="/admin/deleteUser">
-		<c:param name="idutilisateur" value="${film.idFilm}"/>
-		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash-alt"></i>
+                            <a href="<c:url value="/accesrestreint/detailsfilm">
+		<c:param name="idfilm" value="${film.idFilm}"/>
+		</c:url>"> <button class="btn btn-sm btn-info"><i class="fa fa-info-circle"></i> </button>
                              </a>
 						</td>
                     </tr>
@@ -41,9 +41,14 @@
                 </tbody>
                 
             </table>
-           <div class="col-sm-7">
-				<a href="<c:url value="/registerForms"/>" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un film</span></a>				
-			</div>
+           
+
+			<c:if test="${sessionScope.currentUser.role.nomRole == 'Admin' }">                      
+          		 <div class="col-sm-7">
+					<a href="<c:url value="/admin/filmAdmin"/>" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un film</span></a>				
+				</div>  
+             </c:if>
+             
 			<br>
 			<hr class="hr-light my-4 w-75">
        		<div class="col-sm-5">
@@ -69,10 +74,10 @@
                         <td>${film.titreOriginal}</td>
                         <td>${film.anneeProduction}</td>
 						<td>
-                            <a href="<c:url value="/admin/deleteUser">
-		<c:param name="idutilisateur" value="${film.idFilm}"/>
-		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i>
-		</a>
+                           <a href="<c:url value="/accesrestreint/detailsfilm">
+		<c:param name="idfilm" value="${film.idFilm}"/>
+		</c:url>"> <button class="btn btn-sm btn-info"><i class="fa fa-info-circle"></i> </button>
+                             </a>
 						</td>
                     </tr>
 					<tr>

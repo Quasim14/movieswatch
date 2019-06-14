@@ -47,12 +47,7 @@
                     </c:when>
 
                     <c:when test="${sessionScope.currentUser.role.nomRole == 'Admin' }">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/admin/filmAdmin"/>" data-offset="90">Ajout film</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/admin/filmList"/>" data-offset="90">films</a>
-                        </li>
+                      
                         <li class="nav-item">
                             <a class="nav-link" href="<c:url value="/admin/membersList"/>" data-offset="90">membres</a>
                         </li>

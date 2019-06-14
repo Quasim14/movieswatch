@@ -1,4 +1,7 @@
 <style>
+.erreur{
+	color: black;
+}
 .deepshd {
   color: #e0dfdc;
   text-shadow: 0 -1px 0 #fff, 
@@ -38,7 +41,7 @@
 												value="" placeholder="Mot de passe" />
 									</div>
 								        <div class="form-group">
-										<input type="submit" value="Connexion" class="btn btn-primary btn-lg" />
+										<input type="submit" value="Connexion" class="btn btn-primary btn-lg" /><br>
 										<span class="erreur">${form.erreurs['user']}</span>
 									</div>
 								</fieldset>

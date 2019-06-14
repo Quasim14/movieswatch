@@ -6,10 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
+import com.movieswatch.connection.EMF;
 import com.movieswatch.model.Codepostaux;
 import com.movieswatch.model.Role;
 import com.movieswatch.model.Utilisateur;
@@ -103,7 +106,7 @@ public class RegisterFormsModel {
 	    user.setNom( lastName );
 	    
 	    
-	    if(postalCode != null) {
+	    if(postalCodes != null) {
 	    	user.setCodepostaux(postalCodes);
 
 	    }else {
@@ -126,7 +129,20 @@ public class RegisterFormsModel {
 
 	    if ( erreurs.isEmpty() ) {
 	        resultat = "Succés de l'inscription.";
-	        formService.getEntityFinderImplUser().insert(user);
+	        
+	        EntityManager em= EMF.getEM();
+			EntityTransaction transac= em.getTransaction();
+			try {
+				transac.begin();
+				em.persist(user);
+				transac.commit();
+			}finally {
+				if(transac.isActive()) {
+					transac.rollback();
+				}
+				em.clear();
+				em.close();
+			}
 	    } else {
 	        resultat = "échec de l'inscription.";
 	    }

@@ -48,8 +48,8 @@ public class DeleteMovie extends HttpServlet {
 		}
 		
 		EntityManager em= EMF.getEM();
+		EntityTransaction transac= em.getTransaction();
 		try {
-			EntityTransaction transac= em.getTransaction();
 			transac.begin();
 			em.remove(em.merge(itemToRemove));
 			panier.removeCommandesFilm(itemToRemove);
@@ -57,6 +57,9 @@ public class DeleteMovie extends HttpServlet {
 			transac.commit();
 		}
 		finally {
+			if(transac.isActive()) {
+				transac.rollback();
+			}
 			em.clear();
 			em.close();
 		}

@@ -53,13 +53,16 @@ public class Panier extends HttpServlet {
 			panier.setFacture(null);
 			panier.setStatus("non-paye");
 			EntityManager em = EMF.getEM();		
+			EntityTransaction transac= em.getTransaction();
 			try {
-				EntityTransaction transac= em.getTransaction();
 				transac.begin();
 				em.persist(panier);
 				transac.commit();
 				}
 			finally {
+				if(transac.isActive()) {
+					transac.rollback();
+				}
 				em.clear();
 				em.close();
 			}

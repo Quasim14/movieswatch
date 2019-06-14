@@ -1,15 +1,16 @@
 package com.movieswatch.forms;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
+import com.movieswatch.connection.EMF;
 import com.movieswatch.model.Csa;
 import com.movieswatch.model.Film;
 import com.movieswatch.model.Personnage;
@@ -51,7 +52,20 @@ public class FilmForm {
 		}
 
 
-		entityFinderImplFilm.insert(film);
+		EntityManager em= EMF.getEM();
+		EntityTransaction transac= em.getTransaction();
+		try {
+			transac.begin();
+			em.persist(film);
+			transac.commit();
+		}finally {
+			if(transac.isActive()) {
+				transac.rollback();
+			}
+			em.clear();
+			em.close();
+		}
+		
 		return film;
 	}
 }

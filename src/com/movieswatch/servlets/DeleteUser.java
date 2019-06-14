@@ -23,7 +23,8 @@ import com.movieswatch.service.UtilisateurService;
 @WebServlet("/admin/deleteUser")
 public class DeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    EntityFinderImpl<Utilisateur> userDB= new EntityFinderImpl<>();
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,23 +39,8 @@ public class DeleteUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idUser= Integer.valueOf(request.getParameter("idutilisateur"));
 		
-		UtilisateurService.remove(idUser);
-	/*	EntityFinderImpl<Utilisateur> emfi = new EntityFinderImpl();
-		
-		Utilisateur userToRemove = emfi.findOne(new Utilisateur(), idUser);
-		
-		EntityManager em= EMF.getEM();
-		try {
-			EntityTransaction transac= em.getTransaction();
-			transac.begin();
-			em.remove(em.merge(userToRemove));
-			transac.commit();
-		}
-		finally {
-			em.clear();
-			em.close();
-		}*/
-		
+		Utilisateur user= userDB.findOne(new Utilisateur(), idUser);
+		UtilisateurService.remove(user);
 		
 		
 		response.sendRedirect(request.getContextPath()+"/admin/membersList");

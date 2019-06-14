@@ -38,8 +38,8 @@ public class PayPanier extends HttpServlet {
 		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
 		
 		EntityManager em= EMF.getEM();
+		EntityTransaction transac= em.getTransaction();
 		try {
-			EntityTransaction transac= em.getTransaction();
 			transac.begin();
 			Commande panier= (Commande) em.find(Commande.class, idPanier);
 			
@@ -54,6 +54,9 @@ public class PayPanier extends HttpServlet {
 			transac.commit();
 		}
 		finally {
+			if(transac.isActive()) {
+				transac.rollback();
+			}
 			em.clear();
 			em.close();
 		}
