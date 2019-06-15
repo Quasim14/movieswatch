@@ -88,7 +88,7 @@ public class PayPanier extends HttpServlet {
 		Document document = new Document();
 		PdfWriter.getInstance(document,new FileOutputStream(this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf"));
 		document.open();
-		document.add(new Paragraph("Nom : " + user.getNom() + " Pr�nom : " + user.getPrenom()));
+		document.add(new Paragraph("Nom : " + user.getNom() + " Prenom : " + user.getPrenom()));
 		document.add(new Paragraph("Adresse mail :" + user.getEmail()));
 		document.add(new Paragraph(user.getCodepostaux().getNomVille() + " " + user.getCodepostaux().getNumero()));
 		document.add(new Paragraph("Commandes : "));
