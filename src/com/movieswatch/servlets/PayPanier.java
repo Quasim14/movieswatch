@@ -45,6 +45,7 @@ public class PayPanier extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+	@SuppressWarnings("deprecation")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
 		
@@ -80,13 +81,16 @@ public class PayPanier extends HttpServlet {
 		Document document = new Document();
 		PdfWriter.getInstance(document,new FileOutputStream(this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf"));
 		document.open();
-		document.add(new Paragraph(user.getNom() + user.getPrenom()));
-			document.add(new Paragraph(user.getEmail()));
-			document.add(new Paragraph(panier.getIdCommande()));
-			document.add(new Paragraph(panier.getFacture().getDateCommande().toString()));
+		document.add(new Paragraph("Nom : " + user.getNom() + " Prénom : " + user.getPrenom()));
+			document.add(new Paragraph("Adresse mail :" + user.getEmail()));
+			document.add(new Paragraph("Date de naissance : " + user.getDateNaissance()));
+			document.add(new Paragraph(user.getCodepostaux().getNomVille() + " " + user.getCodepostaux().getNumero()));
+			document.add(new Paragraph("Commandes : "));
 			for(CommandesFilm c: panier.getCommandesFilms()) {
 				document.add(new Paragraph(c.getFilm().getTitreOriginal()));
 			}
+			
+			document.add(new Paragraph("Date de commande : " + panier.getFacture().getDateCommande().toString()));
 			document.close();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
@@ -95,7 +99,7 @@ public class PayPanier extends HttpServlet {
 			
 		//envoi d'email 
 		try {
-			JavaMailUtil.sendMail("movieswatchproject@gmail.com", panier, this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf");
+			JavaMailUtil.sendMail(user.getEmail(), panier, this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
