@@ -22,6 +22,12 @@ import com.movieswatch.query.EntityFinderImpl;
 /**
  * Servlet implementation class MesCommandes
  */
+
+/**
+ * 
+ * @author Younes Moumtaz
+ * 
+ */
 @WebServlet("/accesrestreint/mescommandes")
 public class MesCommandes extends HttpServlet {
 	private static final long serialVersionUID = 1L;

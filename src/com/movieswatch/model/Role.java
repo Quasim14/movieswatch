@@ -23,9 +23,6 @@ public class Role implements Serializable {
 	@Column(name="nom_role", length=45)
 	private String nomRole;
 
-	//bi-directional many-to-one association to PermissionsRole
-	@OneToMany(mappedBy="role")
-	private List<PermissionsRole> permissionsRoles;
 
 	//bi-directional many-to-one association to Utilisateur
 	@OneToMany(mappedBy="role")
@@ -48,28 +45,6 @@ public class Role implements Serializable {
 
 	public void setNomRole(String nomRole) {
 		this.nomRole = nomRole;
-	}
-
-	public List<PermissionsRole> getPermissionsRoles() {
-		return this.permissionsRoles;
-	}
-
-	public void setPermissionsRoles(List<PermissionsRole> permissionsRoles) {
-		this.permissionsRoles = permissionsRoles;
-	}
-
-	public PermissionsRole addPermissionsRole(PermissionsRole permissionsRole) {
-		getPermissionsRoles().add(permissionsRole);
-		permissionsRole.setRole(this);
-
-		return permissionsRole;
-	}
-
-	public PermissionsRole removePermissionsRole(PermissionsRole permissionsRole) {
-		getPermissionsRoles().remove(permissionsRole);
-		permissionsRole.setRole(null);
-
-		return permissionsRole;
 	}
 
 	public List<Utilisateur> getUtilisateurs() {

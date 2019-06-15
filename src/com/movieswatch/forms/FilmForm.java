@@ -17,6 +17,11 @@ import com.movieswatch.model.Personnage;
 import com.movieswatch.model.Personne;
 import com.movieswatch.query.EntityFinderImpl;
 
+/**
+ * 
+ * @author Bilal Djouab
+ * 
+ */
 public class FilmForm {
 	private static Logger log = Logger.getLogger(FilmForm.class);
 

@@ -28,9 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/accesrestreint/accueil"/>" data-offset="90">Accueil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/accesrestreint/filmList"/>" data-offset="90">Films</a>
-                    </li>                      
+                                        
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/accesrestreint/edituser"/>" data-offset="90">edit profil</a>
                     </li>
@@ -38,6 +36,9 @@
 				</c:if>
                 <c:choose>
                     <c:when test="${sessionScope.currentUser.role.nomRole == 'Utilisateur' }">    
+                     <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/accesrestreint/filmList"/>" data-offset="90">Films</a>
+                    </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="<c:url value="/accesrestreint/panier"/>" data-offset="30">Panier</a>
                         </li>
@@ -47,11 +48,22 @@
                     </c:when>
 
                     <c:when test="${sessionScope.currentUser.role.nomRole == 'Admin' }">
-                      
+                       <li class="nav-item">
+                       		 <a class="nav-link" href="<c:url value="/accesrestreint/filmList"/>" data-offset="90">Films</a>
+                   		</li> 
                         <li class="nav-item">
                             <a class="nav-link" href="<c:url value="/admin/membersList"/>" data-offset="90">membres</a>
                         </li>
                     </c:when>
+                    
+                    <c:when test="${sessionScope.currentUser.role.nomRole == 'Comptable' }">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<c:url value="/accounting"/>" data-offset="90">Commandes</a>
+                        </li>
+                        
+                        
+                    </c:when>
+                    
                 </c:choose>                           
                 </ul>
                 <!-- Social Icon  -->

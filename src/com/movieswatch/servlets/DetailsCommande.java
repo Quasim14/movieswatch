@@ -18,6 +18,12 @@ import com.movieswatch.query.EntityFinderImpl;
 /**
  * Servlet implementation class DetailsCommande
  */
+
+/**
+ * 
+ * @author Younes Moumtaz
+ * 
+ */
 @WebServlet("/accesrestreint/detailscommande")
 public class DetailsCommande extends HttpServlet {
 	private static final long serialVersionUID = 1L;

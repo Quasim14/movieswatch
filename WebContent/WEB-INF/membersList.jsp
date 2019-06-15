@@ -32,7 +32,7 @@
 						<td>
                             <a href="<c:url value="/admin/deleteUser">
 		<c:param name="idutilisateur" value="${user.idUtilisateur}"/>
-		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i>
+		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash" style="color:red" aria-hidden="true"></i>
                              </a>
 						</td>
                     </tr>
@@ -47,6 +47,47 @@
 				<a href="<c:url value="/registerForms"/>" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Ajouter un utilisateur</span></a>				
 			</div>
 			<br>
+				<hr class="hr-light my-4 w-75">
+			
+			
+			<div class="col-sm-5">
+				<h2>Comptable</h2>
+			</div>
+                 <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>						
+						<th>Email</th>
+						<th>Role</th>
+						<th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <c:forEach items="${listUtilisateur}" var="user" varStatus="status">
+                	<c:if test="${user.role.nomRole=='Comptable' }">
+
+                        <td>${status.index }</td>
+                        <td><a href="#"><img src="${pageContext.request.contextPath}/inc/images/avatars/avatar.png" width="35" height="35"class="avatar" alt="Avatar"> ${user.nom} ${user.prenom} </a></td>
+                        <td>${user.email}</td>
+                        <td>${user.role.nomRole}</td>
+
+
+						<td>
+                            <a href="<c:url value="/admin/deleteUser">
+		<c:param name="idutilisateur" value="${user.idUtilisateur}"/>
+		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash" style="color:red" aria-hidden="true"></i></a>
+						</td>
+                    </tr>
+					<tr>
+                	</c:if>
+                </c:forEach>
+
+                </tbody>
+            </table>
+			
+			
 			<hr class="hr-light my-4 w-75">
        		<div class="col-sm-5">
 				<h2>Utilisateur</h2>
@@ -75,7 +116,7 @@
 						<td>
                             <a href="<c:url value="/admin/deleteUser">
 		<c:param name="idutilisateur" value="${user.idUtilisateur}"/>
-		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+		</c:url>" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-trash" style="color:red" aria-hidden="true"></i></a>
 						</td>
                     </tr>
 					<tr>

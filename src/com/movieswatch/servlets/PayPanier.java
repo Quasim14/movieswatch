@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
@@ -30,7 +31,9 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 /**
- * Servlet implementation class PayPanier
+ * 
+ * @author Younes Moumtaz & Souhaib Jemaiel
+ * 
  */
 @WebServlet("/accesrestreint/paypanier")
 public class PayPanier extends HttpServlet {
@@ -46,6 +49,8 @@ public class PayPanier extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Paiement du panier: Partie Younes
+		
 		int idPanier= Integer.valueOf(request.getParameter("idpanier"));
 		
 		EntityManager em= EMF.getEM();
@@ -73,6 +78,8 @@ public class PayPanier extends HttpServlet {
 			em.clear();
 			em.close();
 		}
+		
+		//Envoi d'email avec fichier pdf joint: Partie Souhaib
 		//generation de PDF
 		HttpSession session= request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
@@ -80,14 +87,16 @@ public class PayPanier extends HttpServlet {
 		Document document = new Document();
 		PdfWriter.getInstance(document,new FileOutputStream(this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf"));
 		document.open();
-		document.add(new Paragraph(user.getNom() + user.getPrenom()));
-			document.add(new Paragraph(user.getEmail()));
-			document.add(new Paragraph(panier.getIdCommande()));
-			document.add(new Paragraph(panier.getFacture().getDateCommande().toString()));
-			for(CommandesFilm c: panier.getCommandesFilms()) {
-				document.add(new Paragraph(c.getFilm().getTitreOriginal()));
-			}
-			document.close();
+		document.add(new Paragraph("Nom : " + user.getNom() + " Prénom : " + user.getPrenom()));
+		document.add(new Paragraph("Adresse mail :" + user.getEmail()));
+		document.add(new Paragraph(user.getCodepostaux().getNomVille() + " " + user.getCodepostaux().getNumero()));
+		document.add(new Paragraph("Commandes : "));
+		for(CommandesFilm c: panier.getCommandesFilms()) {
+			document.add(new Paragraph(c.getFilm().getTitreOriginal()));
+		}
+
+		document.add(new Paragraph("Date de commande : " + panier.getFacture().getDateCommande().toString()));
+		document.close();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -95,7 +104,7 @@ public class PayPanier extends HttpServlet {
 			
 		//envoi d'email 
 		try {
-			JavaMailUtil.sendMail("movieswatchproject@gmail.com", panier, this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf");
+			JavaMailUtil.sendMail(user.getEmail(), panier, this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

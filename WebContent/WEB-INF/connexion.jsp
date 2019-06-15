@@ -25,7 +25,7 @@
           		<!--Grid column-->
           			<div class="col-md-12 mb-4 white-text text-center wow fadeIn">
 						<!-- Full Page Intro -->
-						<h6 class="deepshd display-3 font-weight-bold white-text mt-5 pt-5  ">Bienvenus Sur MoviesWatch</h6>
+						<h6 class="deepshd display-3 font-weight-bold white-text mt-5 pt-5  ">Bienvenue Sur MoviesWatch</h6>
 						<hr class="hr-light my-4 w-75">
 						<div class="signup-form">
 							<form method="post" action="<c:url value="/connexion" />">

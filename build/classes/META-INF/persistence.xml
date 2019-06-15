@@ -8,7 +8,6 @@
 		<class>com.movieswatch.model.Commande</class>
 		<class>com.movieswatch.model.CommandesFilm</class>
 		<class>com.movieswatch.model.Csa</class>
-		<class>com.movieswatch.model.Document</class>
 		<class>com.movieswatch.model.Facture</class>
 		<class>com.movieswatch.model.Film</class>
 		<class>com.movieswatch.model.FilmsGenre</class>
@@ -20,8 +19,6 @@
 		<class>com.movieswatch.model.FormatsFilm</class>
 		<class>com.movieswatch.model.Genre</class>
 		<class>com.movieswatch.model.Pay</class>
-		<class>com.movieswatch.model.Permission</class>
-		<class>com.movieswatch.model.PermissionsRole</class>
 		<class>com.movieswatch.model.Personnage</class>
 		<class>com.movieswatch.model.Personne</class>
 		<class>com.movieswatch.model.PersonnesPersonnage</class>

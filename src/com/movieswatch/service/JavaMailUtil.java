@@ -17,6 +17,11 @@ import javax.mail.internet.MimeMultipart;
 
 import com.movieswatch.model.Commande;
 
+/**
+ * 
+ * @author Souhaib Jemaiel
+ * 
+ */
 public class JavaMailUtil {
 	public static void sendMail(String recipient, Commande commande, String path) throws MessagingException {
 		Properties properties = new Properties();

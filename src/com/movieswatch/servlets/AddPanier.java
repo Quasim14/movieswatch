@@ -23,6 +23,12 @@ import com.movieswatch.query.EntityFinderImpl;
 /**
  * Servlet implementation class AddPanier
  */
+
+/**
+ * 
+ * @author Younes Moumtaz
+ * 
+ */
 @WebServlet("/accesrestreint/addpanier")
 public class AddPanier extends HttpServlet {
 	private static final long serialVersionUID = 1L;

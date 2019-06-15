@@ -53,10 +53,6 @@ public class Utilisateur implements Serializable {
 	@OneToMany(mappedBy="utilisateur", cascade=CascadeType.REMOVE)
 	private List<Commande> commandes;
 
-	//bi-directional many-to-one association to Document
-	@OneToMany(mappedBy="utilisateur", cascade=CascadeType.REMOVE)
-	private List<Document> documents;
-
 	//bi-directional many-to-one association to FilmsUtilisateur
 	@OneToMany(mappedBy="utilisateur", cascade=CascadeType.REMOVE)
 	private List<FilmsUtilisateur> filmsUtilisateurs;
@@ -168,28 +164,6 @@ public class Utilisateur implements Serializable {
 		commande.setUtilisateur(null);
 
 		return commande;
-	}
-
-	public List<Document> getDocuments() {
-		return this.documents;
-	}
-
-	public void setDocuments(List<Document> documents) {
-		this.documents = documents;
-	}
-
-	public Document addDocument(Document document) {
-		getDocuments().add(document);
-		document.setUtilisateur(this);
-
-		return document;
-	}
-
-	public Document removeDocument(Document document) {
-		getDocuments().remove(document);
-		document.setUtilisateur(null);
-
-		return document;
 	}
 
 	public List<FilmsUtilisateur> getFilmsUtilisateurs() {
