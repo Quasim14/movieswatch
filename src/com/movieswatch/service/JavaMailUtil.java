@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMultipart;
 import com.movieswatch.model.Commande;
 
 public class JavaMailUtil {
-	public static void sendMail(String recipient, Commande commande) throws MessagingException {
+	public static void sendMail(String recipient, Commande commande, String path) throws MessagingException {
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
@@ -34,14 +34,14 @@ public class JavaMailUtil {
 				return new PasswordAuthentication(mailAccount,password);
 			}
 		});
-		Message message = prepareMessage(session, mailAccount, recipient, commande);
+		Message message = prepareMessage(session, mailAccount, recipient, commande, path);
 		Transport.send(message);
 		
 		
 		
 	}
 
-	private static Message prepareMessage(Session session, String mailAccount, String recipient, Commande commande) {
+	private static Message prepareMessage(Session session, String mailAccount, String recipient, Commande commande, String path) {
 		try
 		{
 		Message message = new MimeMessage(session);
@@ -59,7 +59,7 @@ public class JavaMailUtil {
 				"Ce courriel est pour vous confirmer que votre commande a été reçu.\r\n");
 		
 		MimeBodyPart pdfAttachment = new MimeBodyPart();
-		pdfAttachment.attachFile("C:/Users/Souhaib/documents/"+commande.getIdCommande()+".pdf");
+		pdfAttachment.attachFile(path);
 		
 		emailContent.addBodyPart(textBodyPart);
 		emailContent.addBodyPart(pdfAttachment);

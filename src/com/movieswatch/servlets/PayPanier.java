@@ -1,5 +1,6 @@
 package com.movieswatch.servlets;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
@@ -77,7 +78,7 @@ public class PayPanier extends HttpServlet {
 		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
 		try {
 		Document document = new Document();
-		PdfWriter.getInstance(document,new FileOutputStream("C:/Users/Souhaib/documents/"+panier.getIdCommande()+".pdf"));
+		PdfWriter.getInstance(document,new FileOutputStream(this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf"));
 		document.open();
 		document.add(new Paragraph(user.getNom() + user.getPrenom()));
 			document.add(new Paragraph(user.getEmail()));
@@ -94,7 +95,7 @@ public class PayPanier extends HttpServlet {
 			
 		//envoi d'email 
 		try {
-			JavaMailUtil.sendMail("movieswatchproject@gmail.com", panier);
+			JavaMailUtil.sendMail("movieswatchproject@gmail.com", panier, this.getServletContext().getRealPath("/")+"/facture/" +panier.getIdCommande()+".pdf");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
