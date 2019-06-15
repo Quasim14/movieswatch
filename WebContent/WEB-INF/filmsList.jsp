@@ -3,9 +3,10 @@
 <h3 class="display-3 font-weight-bold mt-5 pt-5 text-dark">Liste des films</h3>
 <hr class="hr-light my-4 w-75">
 <form method="POST" action="<c:url value="/accesrestreint/filmList" />">
-	<input type="text" name="keyword" required  placeholder="rechercher" size="50">
+	<input type="text" name="keyword"  placeholder="rechercher" size="50">
        	<select  name ="type">
-       				   	<option selected value="titre">Titre</option>
+       					<option selected value="all">Selection filtre</option>
+       				   	<option value="titre">Titre</option>
        				   	<option value="genre">Genre</option>
 			        	<option value="personne">Acteur/Realisateur</option>
 			        	<option value="csa">CSA</option>
@@ -109,9 +110,10 @@
           
     <!-- Card package -->
    <form method="POST" action="<c:url value="/accesrestreint/filmList" />">
-	<input type="text" name="keyword" required placeholder="rechercher" size="50">
+	<input type="text" name="keyword" placeholder="rechercher" size="50">
        	<select  name ="type">
-       				   	<option selected value="titre">Titre</option>
+       					<option selected value="all">Selection filtre</option>
+       				   	<option value="titre">Titre</option>
        				   	<option value="genre">Genre</option>
 			        	<option value="personne">Acteur/Realisateur</option>
 			        	<option value="csa">CSA</option>

@@ -58,6 +58,11 @@ public class FilmList extends HttpServlet {
 		String keyword= request.getParameter("keyword");
 		
 		switch(type) {
+			
+			case "all" : 
+				filmListToSend = filmList;
+				break;
+		
 			case "personne": 
 				for(Film film: filmList) {
 					for(FilmsPersonne fp : film.getFilmsPersonnes()) {
