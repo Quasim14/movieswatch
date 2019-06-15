@@ -54,7 +54,7 @@ public class JavaMailUtil {
 		
 		textBodyPart.setText("Monsieur "+commande.getUtilisateur().getNom()+",\r\n" + 
 				"\r\n" + 
-				"merci pour votre achat chez MoviesWatch du" + LocalDate.now() +".\r\n" + 
+				"merci pour votre achat chez MoviesWatch du " + LocalDate.now() +".\r\n" + 
 				"\r\n" + 
 				"Ce courriel est pour vous confirmer que votre commande a été reçu.\r\n");
 		
