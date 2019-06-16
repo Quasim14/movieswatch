@@ -27,12 +27,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Adresse</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" id="adresseRue" name="adresseRue" value="<c:out value="${sessionScope.currentUser.ADrue}"/>">
-            </div>
-          </div>
-          <div class="form-group">
             <label class="col-lg-3 control-label">Numero de telephone</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" id="telephone" name="telephone" value="<c:out value="${sessionScope.currentUser.numMobile}"/>">

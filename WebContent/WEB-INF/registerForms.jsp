@@ -20,6 +20,11 @@
 	        	<input type="text" class="form-control" name="codepostal" value="<c:out value="${codepostal.numero}"/>" placeholder="code postal">
 	        	<span class="erreur">${form.erreurs['codepostal']}</span>
 	        </div>
+	        
+	        <div class="form-group">
+	        	<input type="text" class="form-control" name="nomVille" value="<c:out value="${codepostal.nomVille}"/>" placeholder="Localité">
+	        	<span class="erreur">${form.erreurs['codepostal']}</span>
+	        </div>
 	        <div class="form-group">
 	        	<input type="text" class="form-control" name="telephone" value="<c:out value="${utilisateur.numMobile}"/>" placeholder="Numéro de téléphone">
 	        	<span class="erreur">${form.erreurs['adresseRue']}</span>

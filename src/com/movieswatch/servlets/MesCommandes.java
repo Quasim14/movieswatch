@@ -54,6 +54,4 @@ public class MesCommandes extends HttpServlet {
 		request.setAttribute("commandes", commandes);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/mescommandes.jsp").forward( request, response );
 	}
-
-
 }

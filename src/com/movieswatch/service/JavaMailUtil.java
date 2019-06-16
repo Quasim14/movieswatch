@@ -40,39 +40,34 @@ public class JavaMailUtil {
 			}
 		});
 		Message message = prepareMessage(session, mailAccount, recipient, commande, path);
-		Transport.send(message);
-		
-		
-		
+		Transport.send(message);				
 	}
 
 	private static Message prepareMessage(Session session, String mailAccount, String recipient, Commande commande, String path) {
-		try
-		{
-		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress(mailAccount));
-		message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-		message.setSubject("Votre commande chez MoviesWatch");
-		
-		Multipart emailContent = new MimeMultipart();
-		MimeBodyPart textBodyPart = new MimeBodyPart();
-		
-		textBodyPart.setText("Monsieur "+commande.getUtilisateur().getNom()+",\r\n" + 
-				"\r\n" + 
-				"merci pour votre achat chez MoviesWatch du " + LocalDate.now() +".\r\n" + 
-				"\r\n" + 
-				"Ce courriel est pour vous confirmer que votre commande a été reçu.\r\n");
-		
-		MimeBodyPart pdfAttachment = new MimeBodyPart();
-		pdfAttachment.attachFile(path);
-		
-		emailContent.addBodyPart(textBodyPart);
-		emailContent.addBodyPart(pdfAttachment);
-		
-		message.setContent(emailContent);
-		return message;
-		}catch (Exception ex)
-		{
+		try{
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(mailAccount));
+			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+			message.setSubject("Votre commande chez MoviesWatch");
+			
+			Multipart emailContent = new MimeMultipart();
+			MimeBodyPart textBodyPart = new MimeBodyPart();
+			
+			textBodyPart.setText("Monsieur "+commande.getUtilisateur().getNom()+",\r\n" + 
+					"\r\n" + 
+					"merci pour votre achat chez MoviesWatch du " + LocalDate.now() +".\r\n" + 
+					"\r\n" + 
+					"Ce courriel est pour vous confirmer que votre commande a été reçu.\r\n");
+			
+			MimeBodyPart pdfAttachment = new MimeBodyPart();
+			pdfAttachment.attachFile(path);
+			
+			emailContent.addBodyPart(textBodyPart);
+			emailContent.addBodyPart(pdfAttachment);
+			
+			message.setContent(emailContent);
+			return message;
+		}catch (Exception ex){
 			 
 		}
 		return null;

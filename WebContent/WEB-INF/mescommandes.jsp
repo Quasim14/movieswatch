@@ -1,5 +1,3 @@
-
-
 <h1 class="h1-responsive font-weight-bold text-center mt-5 pt-5 text-dark">Vos commandes</h1>
 <div class="container mb-4">
     <div class="row">
@@ -27,3 +25,8 @@
                         </c:forEach>                    
                     </tbody>
                 </table>
+			</div>
+		</div>
+	</div>
+</div>
+                

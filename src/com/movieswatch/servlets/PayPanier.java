@@ -81,7 +81,7 @@ public class PayPanier extends HttpServlet {
 		}
 		
 		//Envoi d'email avec fichier pdf joint: Partie Souhaib
-		//generation de PDF
+		//generation de PDF ==> LE WORKSPACE DOIT ETRE LE DOSSIER PARENT DU PROJET
 		HttpSession session= request.getSession();
 		Utilisateur user = (Utilisateur) session.getAttribute("currentUser");
 		try {

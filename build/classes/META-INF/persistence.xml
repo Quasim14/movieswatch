@@ -15,8 +15,6 @@
 		<class>com.movieswatch.model.FilmsPersonnage</class>
 		<class>com.movieswatch.model.FilmsPersonne</class>
 		<class>com.movieswatch.model.FilmsUtilisateur</class>
-		<class>com.movieswatch.model.Format</class>
-		<class>com.movieswatch.model.FormatsFilm</class>
 		<class>com.movieswatch.model.Genre</class>
 		<class>com.movieswatch.model.Pay</class>
 		<class>com.movieswatch.model.Personnage</class>

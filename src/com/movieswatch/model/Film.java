@@ -54,7 +54,7 @@ public class Film implements Serializable {
 	private Csa csa;
 
 	//bi-directional many-to-one association to FilmsGenre
-	@OneToMany(mappedBy="film")
+	@OneToMany(mappedBy="film", cascade = CascadeType.PERSIST)
 	private List<FilmsGenre> filmsGenres;
 
 	//bi-directional many-to-one association to FilmsPay
@@ -72,10 +72,6 @@ public class Film implements Serializable {
 	//bi-directional many-to-one association to FilmsUtilisateur
 	@OneToMany(mappedBy="film")
 	private List<FilmsUtilisateur> filmsUtilisateurs;
-
-	//bi-directional many-to-one association to FormatsFilm
-	@OneToMany(mappedBy="film")
-	private List<FormatsFilm> formatsFilms;
 
 	public Film() {
 	}
@@ -282,28 +278,6 @@ public class Film implements Serializable {
 		filmsUtilisateur.setFilm(null);
 
 		return filmsUtilisateur;
-	}
-
-	public List<FormatsFilm> getFormatsFilms() {
-		return this.formatsFilms;
-	}
-
-	public void setFormatsFilms(List<FormatsFilm> formatsFilms) {
-		this.formatsFilms = formatsFilms;
-	}
-
-	public FormatsFilm addFormatsFilm(FormatsFilm formatsFilm) {
-		getFormatsFilms().add(formatsFilm);
-		formatsFilm.setFilm(this);
-
-		return formatsFilm;
-	}
-
-	public FormatsFilm removeFormatsFilm(FormatsFilm formatsFilm) {
-		getFormatsFilms().remove(formatsFilm);
-		formatsFilm.setFilm(null);
-
-		return formatsFilm;
 	}
 
 }

@@ -51,7 +51,9 @@ public class RegisterFormsModel {
 		String firstName =request.getParameter("prenom");
 		String adress =request.getParameter("adresseRue");
 		String postalCode =request.getParameter("codepostal");
+		String ville= request.getParameter("nomVille");
 		mapPostalCode.put("numero",postalCode);
+		mapPostalCode.put("nomVille", ville);
 		String mobile =request.getParameter("telephone");
 		String birthDate =request.getParameter("datenaissance");
 		LocalDate localDatebirthDate = LocalDate.parse(birthDate);
@@ -59,7 +61,6 @@ public class RegisterFormsModel {
 	    String password = request.getParameter("motdepasse");
 	    String confirmation = request.getParameter("confirmation");
 	    String pRole = request.getParameter("role");
-	    
 	
 	    //Initialisation des valeurs de l'utilisateur	    
 	          

@@ -14,7 +14,14 @@
             </div>
             <div class="card-body">
               <h4 class="card-title">${film.titreOriginal}</h4>
-              <p class="card-text">${film.anneeProduction}</p>
+              <p class="card-text">Année de production: ${film.anneeProduction}</p>
+              <p class="card-text" style="">${film.synopsis}.</p>
+            </div>
+                        <div class="text-right blanc visible-lg">            
+              <c:if test="${sessionScope.currentUser.role.nomRole == 'Utilisateur' }">                      
+             	 <a href="<c:url value="/accesrestreint/addpanier"> <c:param name="idfilm" value="${film.idFilm}" />
+              	</c:url>"><button class="btn btn-success" type="button">Ajouter au panier</button></a>	 
+             </c:if>             
             </div>
           </div>
         </div>
@@ -47,15 +54,7 @@
             <div class="row">
               <div class="col-lg-12 text-right"></div>
             </div>
-            <div class="text-right blanc visible-lg">
-            
-              
-              <c:if test="${sessionScope.currentUser.role.nomRole == 'Utilisateur' }">                      
-             	 <a href="<c:url value="/accesrestreint/addpanier"> <c:param name="idfilm" value="${film.idFilm}" />
-              	</c:url>""><button class="btn btn-success" type="button">Ajouter au panier</button></a>	 
-             </c:if>
-             
-            </div>
+
           </div>
         </div>
       </div>

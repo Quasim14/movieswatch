@@ -16,7 +16,6 @@
 
  <div class="view" style="background-image: url('./inc/images/background/backgroundConnectionPage.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
  	<div class="view">
-    <!-- Mask & flexbox options-->
 		<div class=" d-flex justify-content-center align-items-center">
      	 <!-- Content -->
 			<div class="container px-md-3 px-sm-0">
@@ -24,7 +23,6 @@
         		<div class="row wow fadeIn">
           		<!--Grid column-->
           			<div class="col-md-12 mb-4 white-text text-center wow fadeIn">
-						<!-- Full Page Intro -->
 						<h6 class="deepshd display-3 font-weight-bold white-text mt-5 pt-5  ">Bienvenue Sur MoviesWatch</h6>
 						<hr class="hr-light my-4 w-75">
 						<div class="signup-form">

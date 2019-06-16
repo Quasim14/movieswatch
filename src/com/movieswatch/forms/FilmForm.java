@@ -2,6 +2,7 @@ package com.movieswatch.forms;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,8 @@ import org.apache.log4j.Logger;
 import com.movieswatch.connection.EMF;
 import com.movieswatch.model.Csa;
 import com.movieswatch.model.Film;
+import com.movieswatch.model.FilmsGenre;
+import com.movieswatch.model.Genre;
 import com.movieswatch.model.Personnage;
 import com.movieswatch.model.Personne;
 import com.movieswatch.query.EntityFinderImpl;
@@ -30,12 +33,13 @@ public class FilmForm {
 	EntityFinderImpl<Personnage> entityFinderImplPersonnage = new EntityFinderImpl<>();
 	EntityFinderImpl<Personne> entityFinderImplPersonne = new EntityFinderImpl<>();
 	EntityFinderImpl<Csa> entityFinderImplCsa = new EntityFinderImpl<>();
+	EntityFinderImpl<Genre> entityFinderImplGenre = new EntityFinderImpl<>();
 
+	
 	Film film = new Film();
 
 
 	public Film setFilm(HttpServletRequest request){
-
 		film.setTitreOriginal(request.getParameter("titre"));
 		film.setBudget(request.getParameter("budget"));
 		film.setAnneeProduction(request.getParameter("anneeProduction"));
